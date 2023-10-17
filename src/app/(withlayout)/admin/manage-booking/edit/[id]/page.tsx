@@ -1,4 +1,6 @@
 "use client";
+
+import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
@@ -9,44 +11,50 @@ import {
   serviceScheduleOptions,
   serviceStatusOptions,
 } from "@/constants/global";
-import { useBookingQuery } from "@/redux/api/bookingApi";
+import {
+  useServiceQuery,
+  useServicesQuery,
+  useUpdateServiceMutation,
+} from "@/redux/api/serviceApi";
+import {
+  UploadOutlined,
+  LoadingOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import { serviceSchema } from "@/schemas/service";
+import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Col, Form, Row, message } from "antd";
-import React from "react";
+
+import { Button, Col, Row, Upload, message } from "antd";
+import { useState } from "react";
+import {
+  useBookingQuery,
+  useUpdateBookingMutation,
+} from "@/redux/api/bookingApi";
 
 type IDProps = {
   params: any;
 };
 
-const BookingUpdatePage = ({ params }: IDProps) => {
-  //     id
-
-  //   userId
-  //   user
-
-  //   serviceid
-
-  //   service
-
-  //   category
-
-  //   schedule
-  //   status
-  //   student_type
+const EditDepartmentPage = ({ params }: IDProps) => {
   const { id } = params;
 
   const { data, isLoading } = useBookingQuery(id);
+  console.log("data", data);
+  const [updateBooking] = useUpdateBookingMutation();
+
+  //@ts-ignore
 
   const onSubmit = async (values: any) => {
-    console.log("values : ", values);
+    const data = { id, ...values };
+    console.log("values : ", data);
     message.loading("Creating...");
     try {
-      //   const res = await updateService(data);
-      //   console.log("res ", res);
-      //   if (!!res) {
-      //     message.success("Service updated successfully!");
-      // }
+      const res = await updateBooking(data);
+      console.log("res ", res);
+      if (!!res) {
+        message.success("Booking updated successfully!");
+      }
     } catch (err: any) {
       console.error(err.message);
     }
@@ -70,19 +78,19 @@ const BookingUpdatePage = ({ params }: IDProps) => {
       <TMSBreadCrumb
         items={[
           {
-            label: "manage-booking",
+            label: "admin",
             link: "/admin/manage-booking",
           },
         ]}
       />
 
-      <ActionBar title="Update Service"> </ActionBar>
+      <ActionBar title="Update Booking"> </ActionBar>
 
       <div>
         <Form
           submitHandler={onSubmit}
           defaultValues={defaultValues}
-          resolver={yupResolver(serviceSchema)}
+          // resolver={yupResolver(serviceSchema)}
         >
           <div
             style={{
@@ -98,39 +106,9 @@ const BookingUpdatePage = ({ params }: IDProps) => {
                 marginBottom: "10px",
               }}
             >
-              Service Information
+              Booking Information
             </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="text"
-                  name="serviceName"
-                  size="large"
-                  label="Service Name"
-                />
-              </Col>
-
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="text"
-                  name="serviceCode"
-                  size="large"
-                  label="service Code"
-                />
-              </Col>
-
               <Col
                 className="gutter-row"
                 span={8}
@@ -170,25 +148,6 @@ const BookingUpdatePage = ({ params }: IDProps) => {
                   marginBottom: "10px",
                 }}
               >
-                <FormInput
-                  type="text"
-                  name="serviceAuthor"
-                  size="large"
-                  label="service Author"
-                />
-              </Col>
-
-              <Col span={12} style={{ margin: "10px 0" }}>
-                <FormTextArea name="description" label="Description" rows={4} />
-              </Col>
-
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
                 <FormSelectField
                   size="large"
                   name="status"
@@ -209,4 +168,4 @@ const BookingUpdatePage = ({ params }: IDProps) => {
   );
 };
 
-export default BookingUpdatePage;
+export default EditDepartmentPage;

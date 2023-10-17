@@ -1,3 +1,4 @@
+import { IMeta, IUser } from "@/types";
 import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 const AUTH_URL = "/users";
@@ -12,7 +13,58 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.user],
     }),
+
+    users: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: AUTH_URL,
+          method: "GET",
+          params: arg,
+        };
+      },
+      transformResponse: (response: IUser[], meta: IMeta) => {
+        return {
+          bookings: response,
+          meta,
+        };
+      },
+      providesTags: [tagTypes.user],
+    }),
+
+    user: build.query({
+      query: (id) => {
+        return {
+          url: `${AUTH_URL}/${id}`,
+          method: "GET",
+        };
+      },
+
+      providesTags: [tagTypes.user],
+    }),
+
+    updateUser: build.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/${data.id}`,
+        method: "PATCH",
+        data,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `${AUTH_URL}/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
-export const { useUserSignupMutation } = userApi;
+export const {
+  useUserSignupMutation,
+  useUsersQuery,
+  useUserQuery,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = userApi;

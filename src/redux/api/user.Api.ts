@@ -24,7 +24,7 @@ export const userApi = baseApi.injectEndpoints({
       },
       transformResponse: (response: IUser[], meta: IMeta) => {
         return {
-          bookings: response,
+          users: response,
           meta,
         };
       },

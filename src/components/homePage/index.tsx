@@ -1,13 +1,18 @@
 import React from "react";
+import Navbar from "./Navbar";
+import HeaderPage from "./Header";
+import MyStory from "./MyStory";
+import ProfessionalSection from "./professionals";
+import ScrollToTopButton from "./ScrollToTopButton/ScrollToTopButton";
 // import Navbar from "./Navbar";
 
 const HomePage = () => {
   return (
     <div>
-      {/* <Navbar /> */}
-      <h2 className="text-yellow-400 bg-yellow-500 text-5xl">
-        hello dear , how are you{" "}
-      </h2>
+      <Navbar />
+      <HeaderPage />
+      <MyStory />
+      <ProfessionalSection />
     </div>
   );
 };

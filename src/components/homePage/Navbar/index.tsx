@@ -1,75 +1,127 @@
-// "use client"
+"use client";
+import { Menu, Row, Col, Avatar, Input, Button } from "antd";
+import Link from "next/link";
+import { SearchOutlined } from "@ant-design/icons";
 
-// import Link from 'next/link'
-// import React, { Fragment } from 'react'
-// import { Popover, Transition } from '@headlessui/react'
-// import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/solid'
+const Navbar = () => {
+  const handleSearch = (value: string) => {
+    // Implement your search logic here
+    console.log("Searching for:", value);
+  };
 
-// export default function Navbar() {
-//   return (
-//     <Popover className='  mx-auto flex items-center border-b-2 px-6 py-2 h-16 bg-pink-500 text-white ' >
-//         <h1 className=" font-bold text-xl ">Programming</h1>
-//         <div className=" grow ">
-//             <div className=" hidden sm:flex items-center justify-center gap-2 md:gap-8 ">
-//                <Link href="#" >Home</Link>
-//                <Link href="#" >Blog</Link>
-//                <Link href="#" >Shop</Link>
-//                <Link href="#" >About</Link>
-//                <Link href="#" >Contact</Link>
-//             </div>
+  return (
+    <div className="custom-navbar bg-slate-300">
+      <Row justify="space-between" align="middle">
+        <Col xs={6} md={4}>
+          <div className="logo">TUTOR MS</div>
+        </Col>
+        <Col xs={18} md={20}>
+          <Menu mode="horizontal">
+            <Menu.Item
+              key="home"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/">Home</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="dashboard"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/profile">Dashboard</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="about"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/about">About</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="about"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/about"></Link>
+            </Menu.Item>
+            <Menu.Item
+              key="signup"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/signup">Sign Up</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="login"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/login">Login</Link>
+            </Menu.Item>
+            <Menu.Item
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Avatar size={64} src="your-image-url.jpg" alt="Your Name" />
+            </Menu.Item>
+            <Menu.Item
+              style={{
+                fontSize: "22px",
+                fontWeight: "bold",
+              }}
+            >
+              <div>
+                <Input
+                  placeholder="Search..."
+                  allowClear
+                  suffix={
+                    <Button
+                      type="primary"
+                      icon={<SearchOutlined />}
+                      onClick={() => handleSearch("Your search query")}
+                    />
+                  }
+                />
+              </div>
+            </Menu.Item>
 
-//             <div className=" flex grow items-center justify-end sm:hidden ">
-//               <Popover.Button className=' inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 ' >
-//                 <span className=" sr-only ">Open menu</span>
-//                 <Bars3Icon className=' h-6 w-6' aria-hidden='true' />
-//               </Popover.Button>
-//             </div>
-//             <Popover.Overlay className=' sm:hidden fixed inset-0 bg-black opacity-30 '  />
-//             <Transition
-//              as={Fragment}
-//              enter=' duration-200 ease-out '
-//              enterFrom=' opacity-0 scale-95 '
-//              enterTo=' opacity-100 scale-100 '
-//              leave=' duration-100 ease-in'
-//              leaveFrom='duration-100 scale-100  '
-//              leaveTo=' opacity-0 scale-95 '
-//             >
+            <Menu.Item>
+              <div
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Button
+                  type="primary"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  BOOKING NOW
+                </Button>
+              </div>
+            </Menu.Item>
+          </Menu>
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
-//             <Popover.Panel className='absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden ' >
-//               <div className=" rounded-lg bg-pink-500 shadow-lg ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50  ">
-//                 <div className=" px-5 pt-5 pb-6 ">
-//                   <div className=" flex items-center justify-between ">
-//                     <h1 className=' font-bold ' >Programming</h1>
-//                     <div className=" mr-2 ">
-//                       <Popover.Button className=' inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 ' >
-//                          <span className=" sr-only ">Close menu</span>
-//                          <XMarkIcon className=' h-6 w-6' aria-hidden='true' />
-//                       </Popover.Button>
-//                     </div>
-//                   </div>
-//                   <div className=" mt-6 ">
-//                     <nav className='grid gap-y-8 '>
-//                     <Link href="#" className=' focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2 ' >Home</Link>
-//                     <Link href="#" className=' focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2 ' >Blog</Link>
-//                     <Link href="#" className=' focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2 ' >Shop</Link>
-//                     <Link href="#" className=' focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2 ' >About</Link>
-//                     <Link href="#" className=' focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2 ' >Contact</Link>
-//                     </nav>
-//                   </div>
-//                   <div className=" mt-6 flex flex-col items-center gap-2 ">
-//                   <Link href="#" className=' rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-black md:text-xl w-full border-2 focus:outline-none focus:ring-2  focus:ring-inset focus:ring-gray-500 ' >Sign up</Link>
-//                   <Link href="#" className=' rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-black md:text-xl w-full border-2 focus:outline-none focus:ring-2  focus:ring-inset focus:ring-gray-500 ' >Login</Link>
-//                   </div>
-//                 </div>
-//               </div>
-//             </Popover.Panel>
-//             </Transition>
-
-//         </div>
-//         <div className=" hidden sm:block ">
-//         <Link href="#" className=' mr-2 font-bold ' >Sign up</Link>
-//         <Link href="#" className=' font-bold ' >Login</Link>
-//         </div>
-//     </Popover>
-//   )
-// }
+export default Navbar;

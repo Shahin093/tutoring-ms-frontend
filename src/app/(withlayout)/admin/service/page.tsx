@@ -1,7 +1,10 @@
 "use client";
-import { useServicesQuery } from "@/redux/api/serviceApi";
+import {
+  useDeleteServiceMutation,
+  useServicesQuery,
+} from "@/redux/api/serviceApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import dayjs from "dayjs";
 import Link from "next/link";
 import {
@@ -15,14 +18,19 @@ import { useState } from "react";
 import ActionBar from "@/components/ui/ActionBar";
 import TMSTable from "@/components/ui/TMSTable";
 import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
+import TMSModal from "@/components/ui/TMSModal";
 const Service = () => {
   const query: Record<string, any> = {};
+  const [updateService] = useDeleteServiceMutation();
 
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [adminId, setAdminId] = useState<string>("");
 
   query["limit"] = size;
   query["page"] = page;
@@ -45,19 +53,6 @@ const Service = () => {
   const meta = data?.meta;
 
   const columns = [
-    // {
-    //   title: "Id",
-    //   dataIndex: "id",
-    //   sorter: true,
-    // },
-    // {
-    //   title: "Name",
-    //   dataIndex: "name",
-    //   render: function (data: Record<string, string>) {
-    //     const fullName = `${data?.firstName} ${data?.middleName} ${data?.lastName}`;
-    //     return <>{fullName}</>;
-    //   },
-    // },
     {
       title: "Location",
       dataIndex: "location",
@@ -75,6 +70,7 @@ const Service = () => {
       title: "Service Name",
       dataIndex: "serviceName",
     },
+
     {
       title: "Action",
       dataIndex: "id",
@@ -97,7 +93,15 @@ const Service = () => {
                 <EditOutlined />
               </Button>
             </Link>
-            <Button onClick={() => console.log(data)} type="primary" danger>
+            <Button
+              type="primary"
+              onClick={() => {
+                setOpen(true);
+                setAdminId(data);
+              }}
+              danger
+              style={{ marginLeft: "3px" }}
+            >
               <DeleteOutlined />
             </Button>
           </>
@@ -118,6 +122,19 @@ const Service = () => {
     setSortOrder(order === "ascend" ? "asc" : "desc");
   };
 
+  const deleteServiceHandler = async (id: string) => {
+    // console.log(id);
+    try {
+      const res = await updateService(id);
+      if (res) {
+        message.success("Service Successfully Deleted!");
+        setOpen(false);
+      }
+    } catch (error: any) {
+      message.error(error.message);
+    }
+  };
+
   const resetFilters = () => {
     setSortBy("");
     setSortOrder("");
@@ -129,8 +146,8 @@ const Service = () => {
       <TMSBreadCrumb
         items={[
           {
-            label: "super_admin",
-            link: "/super_admin",
+            label: "Profile",
+            link: "/profile",
           },
         ]}
       />
@@ -144,8 +161,8 @@ const Service = () => {
           }}
         />
         <div>
-          <Link href="/super_admin/admin/create">
-            <Button type="primary">Create Admin</Button>
+          <Link href="/admin/service/create">
+            <Button type="primary">Create Service</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button
@@ -170,6 +187,15 @@ const Service = () => {
         onTableChange={onTableChange}
         showPagination={true}
       />
+
+      <TMSModal
+        title="Remove Service"
+        isOpen={open}
+        closeModal={() => setOpen(false)}
+        handleOk={() => deleteServiceHandler(adminId)}
+      >
+        <p className="my-5">Do you want to remove this Service?</p>
+      </TMSModal>
     </div>
   );
 };

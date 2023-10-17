@@ -47,18 +47,40 @@ export const sidebarItems = (role: string) => {
       children: [
         {
           label: <Link href={`/${role}/service`}>All Services</Link>,
-          key: `/${role}/academic/faculty`,
+          key: `/${role}/service`,
         },
       ],
     },
     {
-      label: "Management",
-      key: "management",
+      label: "Manage Admin",
+      key: "manage-admin",
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/department`}>Department</Link>,
-          key: `/${role}/department`,
+          label: <Link href={`/${role}/manage-admin`}>Manage Admin</Link>,
+          key: `/${role}/manage-admin`,
+        },
+      ],
+    },
+    {
+      label: "Manage booking",
+      key: "manage-booking",
+      icon: <AppstoreOutlined />,
+      children: [
+        {
+          label: <Link href={`/${role}/manage-booking`}>Manage Booking</Link>,
+          key: `/${role}/manage-booking`,
+        },
+      ],
+    },
+    {
+      label: "Manage User",
+      key: "manage-user",
+      icon: <AppstoreOutlined />,
+      children: [
+        {
+          label: <Link href={`/${role}/manage-user`}>Manage User</Link>,
+          key: `/${role}/manage-user`,
         },
       ],
     },

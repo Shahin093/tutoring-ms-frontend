@@ -5,7 +5,7 @@ import {
   useDeleteBookingMutation,
 } from "@/redux/api/bookingApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, message } from "antd";
+import { Button, message, Avatar, Input } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -20,6 +20,7 @@ import TMSTable from "@/components/ui/TMSTable";
 import TMSModal from "@/components/ui/TMSModal";
 import { global } from "styled-jsx/css";
 import { useDeleteUserMutation, useUsersQuery } from "@/redux/api/user.Api";
+import ActionBar from "@/components/ui/ActionBar";
 
 const ManageUser = () => {
   const query: Record<string, any> = {};
@@ -57,6 +58,11 @@ const ManageUser = () => {
 
   const columns = [
     {
+      // title: "Avatar",
+      dataIndex: "profileImg", // Assuming 'avatar' is the property containing the image URL
+      render: (avatar: string) => <Avatar src={avatar} />,
+    },
+    {
       title: " Name",
       dataIndex: "name",
     },
@@ -86,11 +92,6 @@ const ManageUser = () => {
     },
 
     {
-      title: "Status",
-      dataIndex: "status",
-    },
-
-    {
       title: "Action",
       dataIndex: "id",
       render: function (data: any) {
@@ -101,7 +102,7 @@ const ManageUser = () => {
                 <EyeOutlined />
               </Button>
             </Link>
-            <Link href={`/admin/manage-booking/edit/${data}`}>
+            <Link href={`/admin/manage-user/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -171,7 +172,30 @@ const ManageUser = () => {
   };
   return (
     <div>
-      <h1>Manage Booking</h1>
+      <ActionBar title="Manage All Users">
+        <Input
+          size="large"
+          placeholder="Search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            width: "20%",
+          }}
+        />
+        <div>
+          <Link href="/admin/manage-user/create">
+            <Button type="primary">Create User</Button>
+          </Link>
+          {(!!sortBy || !!sortOrder || !!searchTerm) && (
+            <Button
+              style={{ margin: "0px 5px" }}
+              type="primary"
+              onClick={resetFilters}
+            >
+              <ReloadOutlined />
+            </Button>
+          )}
+        </div>
+      </ActionBar>
       <TMSTable
         loading={isLoading}
         columns={columns}

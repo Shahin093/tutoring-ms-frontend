@@ -12,6 +12,7 @@ type TMSTableProps = {
   onPaginationChange?: (page: number, pageSize: number) => void;
   onTableChange?: (pagination: any, filter: any, sorter: any) => void;
   showPagination?: boolean;
+  rowClassName?: (record: any, index: number) => string; // Add rowClassName
 };
 
 const TMSTable = ({
@@ -24,6 +25,7 @@ const TMSTable = ({
   onPaginationChange,
   onTableChange,
   showPagination = true,
+  rowClassName, // Add rowClassName prop
 }: TMSTableProps) => {
   const paginationConfig = showPagination
     ? {
@@ -42,6 +44,7 @@ const TMSTable = ({
       dataSource={dataSource}
       pagination={paginationConfig}
       onChange={onTableChange}
+      rowClassName={rowClassName} // Apply rowClassName
     />
   );
 };

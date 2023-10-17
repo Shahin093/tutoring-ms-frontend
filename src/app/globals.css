@@ -10,7 +10,6 @@
   font-family: "Roboto Condensed", sans-serif;
 }
 
-
 /* components/CustomNavBar.css */
 
 .custom-navbar {
@@ -29,4 +28,12 @@
 
 .ant-menu-horizontal .ant-menu-item {
   margin: 0 1rem;
+}
+
+.custom-row-class1 {
+  background-color: #ffcccc; /* You can define your own colors */
+}
+
+.custom-row-class2 {
+  background-color: #9aeddc;
 }

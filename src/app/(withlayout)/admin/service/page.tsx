@@ -21,7 +21,7 @@ import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
 import TMSModal from "@/components/ui/TMSModal";
 const Service = () => {
   const query: Record<string, any> = {};
-  const [updateService] = useDeleteServiceMutation();
+  const [deleteService] = useDeleteServiceMutation();
 
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
@@ -30,7 +30,7 @@ const Service = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const [open, setOpen] = useState<boolean>(false);
-  const [adminId, setAdminId] = useState<string>("");
+  const [serviceId, setServiceId] = useState<string>("");
 
   query["limit"] = size;
   query["page"] = page;
@@ -50,6 +50,7 @@ const Service = () => {
   console.log("service data: ", data);
 
   const services = data?.services;
+  console.log("services : ", data?.services);
   const meta = data?.meta;
 
   const columns = [
@@ -97,7 +98,7 @@ const Service = () => {
               type="primary"
               onClick={() => {
                 setOpen(true);
-                setAdminId(data);
+                setServiceId(data);
               }}
               danger
               style={{ marginLeft: "3px" }}
@@ -125,7 +126,7 @@ const Service = () => {
   const deleteServiceHandler = async (id: string) => {
     // console.log(id);
     try {
-      const res = await updateService(id);
+      const res = await deleteService(id);
       if (res) {
         message.success("Service Successfully Deleted!");
         setOpen(false);
@@ -139,6 +140,15 @@ const Service = () => {
     setSortBy("");
     setSortOrder("");
     setSearchTerm("");
+  };
+
+  const customRowClassName = (record: any, index: any) => {
+    // You can implement your custom logic here to determine the row class name
+    if (record.someCondition) {
+      return "custom-row-class1";
+    } else {
+      return "custom-row-class2";
+    }
   };
 
   return (
@@ -186,13 +196,14 @@ const Service = () => {
         onPaginationChange={onPaginationChange}
         onTableChange={onTableChange}
         showPagination={true}
+        rowClassName={customRowClassName} // Provide the custom row class name function
       />
 
       <TMSModal
         title="Remove Service"
         isOpen={open}
         closeModal={() => setOpen(false)}
-        handleOk={() => deleteServiceHandler(adminId)}
+        handleOk={() => deleteServiceHandler(serviceId)}
       >
         <p className="my-5">Do you want to remove this Service?</p>
       </TMSModal>

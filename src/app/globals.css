@@ -37,3 +37,11 @@
 .custom-row-class2 {
   background-color: #9aeddc;
 }
+
+.testimonials-container {
+  background: linear-gradient(to bottom, #0074b9, #00b4d8);
+  min-height: 30vh;
+  padding: 20px;
+  border-radius: 20px;
+  color: #fff;
+}

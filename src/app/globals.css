@@ -45,3 +45,10 @@
   border-radius: 20px;
   color: #fff;
 }
+.testimonials-container-profile {
+  background: linear-gradient(to bottom, #0074b9, #00b4d8);
+  min-height: 20vh;
+  padding: 20px;
+  border-radius: 20px;
+  color: #fff;
+}

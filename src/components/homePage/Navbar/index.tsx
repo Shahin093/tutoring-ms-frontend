@@ -99,8 +99,16 @@ const Navbar = () => {
                 />
               </div>
             </Menu.Item>
-
-            <Menu.Item>
+            <Menu.Item
+              key="dashboard"
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              <Link href="/service-booking">BOOKING NOW</Link>
+            </Menu.Item>
+            {/* <Menu.Item>
               <div
                 style={{
                   fontSize: "18px",
@@ -116,7 +124,7 @@ const Navbar = () => {
                   BOOKING NOW
                 </Button>
               </div>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
         </Col>
       </Row>

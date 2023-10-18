@@ -31,6 +31,16 @@ export const serviceApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.service],
     }),
+    serviceCategory: build.query({
+      query: () => {
+        return {
+          url: SERVICE_URL,
+          method: "GET",
+        };
+      },
+
+      providesTags: [tagTypes.service],
+    }),
 
     service: build.query({
       query: (id) => {
@@ -68,4 +78,5 @@ export const {
   useUpdateServiceMutation,
   useServiceQuery,
   useDeleteServiceMutation,
+  useServiceCategoryQuery,
 } = serviceApi;

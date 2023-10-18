@@ -3,7 +3,7 @@ import React from "react";
 
 const ProfessionalSection = () => {
   return (
-    <div style={{ marginTop: "40px", marginBottom: "40px" }} id="section1">
+    <div style={{ marginTop: "100px", marginBottom: "90px" }} id="section1">
       <h1 style={{ fontSize: "50px", margin: "30px 30px", fontFamily: "bold" }}>
         Meet professionals
       </h1>

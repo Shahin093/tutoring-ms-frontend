@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ScrollToTopButton from "@/components/homePage/ScrollToTopButton/ScrollToTopButton";
+import Navbar from "@/components/homePage/Navbar";
+import { FooterLinks } from "@/components/homePage/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,9 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <body className={inter.className}>
+          <Navbar />
           {children}
+          <FooterLinks />
           <ScrollToTopButton />
         </body>
       </html>

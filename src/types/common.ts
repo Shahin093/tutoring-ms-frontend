@@ -21,6 +21,7 @@ export type IGenericErrorMessage = {
 };
 
 export type IService = {
+  id: string;
   serviceName: string;
   serviceCode: number;
   category: string;

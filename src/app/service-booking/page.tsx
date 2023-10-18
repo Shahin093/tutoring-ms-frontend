@@ -7,6 +7,7 @@ import { Layout, Space, Card, Select, SelectProps, Avatar, Button } from "antd";
 import { useState } from "react";
 import { ReloadOutlined } from "@ant-design/icons";
 import styled from "styled-components";
+import Link from "next/link";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -176,6 +177,7 @@ const ServiceBookingPage = () => {
           >
             {services?.map((service: IService, index: number) => (
               <CardComponent key={index}>
+                <Link href={`detailsService/${service?.id}`}>
                 <Card
                   style={{
                     backgroundColor: "#b5f5ec",
@@ -202,6 +204,7 @@ const ServiceBookingPage = () => {
                     </h4>
                   </div>
                 </Card>
+                </Link>
               </CardComponent>
             ))}
           </Card>

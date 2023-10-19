@@ -77,7 +77,7 @@ const ServiceDetailPage = ({ params }: IDProps) => {
         }}
       >
         <Layout>
-          <Header style={headerStyle}>Header</Header>
+          {/* <Header style={headerStyle}>Header</Header> */}
           <Layout hasSider>
             <Content style={contentStyle}>
               <Row justify={"center"}>
@@ -134,10 +134,15 @@ const ServiceDetailPage = ({ params }: IDProps) => {
               </Row>
             </Content>
             <Sider style={siderStyle}>
-              <Button disabled={isBooking &&  isBooking.length !== 0} onClick={bookingCreate}>
+              <Button
+                disabled={isBooking && isBooking.length !== 0}
+                onClick={bookingCreate}
+              >
                 BOOKING NOW
               </Button>
-              {isBooking && isBooking.length !== 0 && <p>Already Enrolled this Service.</p>}
+              {isBooking && isBooking.length !== 0 && (
+                <p>Already Enrolled this Service.</p>
+              )}
             </Sider>
           </Layout>
         </Layout>

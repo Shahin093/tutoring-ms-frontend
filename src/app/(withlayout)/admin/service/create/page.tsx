@@ -22,9 +22,11 @@ import { useState } from "react";
 import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
 import { serviceSchema } from "@/schemas/service";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
 
 const CreateServicePage = () => {
   const [addServiceData] = useAddServiceDataMutation();
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
@@ -54,6 +56,7 @@ const CreateServicePage = () => {
       console.log("res ", res);
       if (!!res) {
         message.success("Service created successfully!");
+        router.push("/admin/service");
       }
     } catch (err: any) {
       console.error(err.message);

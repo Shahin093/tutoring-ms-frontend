@@ -38,7 +38,7 @@ const MyBookingPage = () => {
   console.log("profile data: ", (data && data) || "");
   const [open, setOpen] = useState<boolean>(false);
   const [serviceId, setServiceId] = useState<string>("");
-
+  const userData: any = data?.user;
   const columns = [
     // {
     //   // title: "Name",
@@ -94,30 +94,14 @@ const MyBookingPage = () => {
     {
       title: "Action",
       dataIndex: "id",
-      render: function (data: any) {
+      render: function (userData: any) {
         return (
           <>
-            <Link href={`/admin/manage-booking/details/${data.id}`}>
-              <Button onClick={() => console.log(data)} type="primary">
-                <EyeOutlined />
-              </Button>
-            </Link>
-            <Link href={`/admin/manage-booking/edit/${data}`}>
-              <Button
-                style={{
-                  margin: "0px 5px",
-                }}
-                onClick={() => console.log(data)}
-                type="primary"
-              >
-                <EditOutlined />
-              </Button>
-            </Link>
             <Button
               type="primary"
               onClick={() => {
                 setOpen(true);
-                setServiceId(data);
+                setServiceId(userData?.id);
               }}
               danger
               style={{ marginLeft: "3px" }}
@@ -125,6 +109,20 @@ const MyBookingPage = () => {
               <DeleteOutlined />
             </Button>
           </>
+        );
+      },
+    },
+
+    {
+      title: "",
+      dataIndex: "id",
+      render: function (userData: any) {
+        return (
+          <Link href={`/create-review/${userData?.service?.id}`}>
+            <Button type="primary" danger style={{ marginLeft: "3px" }}>
+              Review
+            </Button>
+          </Link>
         );
       },
     },

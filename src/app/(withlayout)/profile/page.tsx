@@ -5,20 +5,13 @@ import { Button, Col, Row, Card } from "antd";
 import { Image } from "antd";
 import Link from "next/link";
 
-const testimonials = [
-  { name: "Jane Smith", content: "I love using Next.js with Ant Design." },
-  { name: "Jane Smith", content: "I love using Next.js with Ant Design." },
-  { name: "Jane Smith", content: "I love using Next.js with Ant Design." },
-  // Add more testimonials here
-];
-
 const ProfilePage = () => {
   //@ts-ignore
   const { data, isLoading } = useMyProfileQuery(undefined || null);
   console.log("profile data: ", (data && data) || "");
   return (
     <div>
-      <h1>Welcome back to your profile</h1>
+      <h1 style={{ margin: "15px" }}>Welcome back to your profile</h1>
       <Row
         justify="center"
         align="middle"

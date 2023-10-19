@@ -39,7 +39,6 @@ const ProfileEditPage = ({ params }: IDProps) => {
     if (imageUrl) {
       setImageUrl(imageUrl);
       message.success("Image uploaded successfully!");
-      router.push("/profile");
     } else {
       message.error("Failed to upload image.");
     }
@@ -56,6 +55,7 @@ const ProfileEditPage = ({ params }: IDProps) => {
       console.log("res ", res);
       if (!!res) {
         message.success("My Profile updated successfully!");
+        router.push("/profile");
       }
     } catch (err: any) {
       console.error(err.message);

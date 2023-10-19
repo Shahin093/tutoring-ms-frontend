@@ -2,42 +2,30 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import FormSelectField from "@/components/Forms/FormSelectField";
-import FormTextArea from "@/components/Forms/FormTextArea";
-import ActionBar from "@/components/ui/ActionBar";
-import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
-import {
-  serviceCategoryOptions,
-  serviceScheduleOptions,
-  serviceStatusOptions,
-} from "@/constants/global";
-import {
-  useServiceQuery,
-  useServicesQuery,
-  useUpdateServiceMutation,
-} from "@/redux/api/serviceApi";
 import {
   UploadOutlined,
   LoadingOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import { serviceSchema } from "@/schemas/service";
-import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
-import { yupResolver } from "@hookform/resolvers/yup";
-
+import ActionBar from "@/components/ui/ActionBar";
+import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
+import { useUpdateUserMutation, useUserQuery } from "@/redux/api/user.Api";
 import { Button, Col, Row, Upload, message } from "antd";
 import { useState } from "react";
+import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
 import { useRouter } from "next/navigation";
+
 type IDProps = {
   params: any;
 };
-
-const EditDepartmentPage = ({ params }: IDProps) => {
+const ProfileEditPage = ({ params }: IDProps) => {
   const { id } = params;
   const router = useRouter();
-  const { data, isLoading } = useServiceQuery(id);
-  console.log("data", data);
-  const [updateService] = useUpdateServiceMutation();
+
+  const { data, isLoading } = useUserQuery(id);
+
+  const [updateUser] = useUpdateUserMutation();
+
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
@@ -51,22 +39,24 @@ const EditDepartmentPage = ({ params }: IDProps) => {
     if (imageUrl) {
       setImageUrl(imageUrl);
       message.success("Image uploaded successfully!");
+     
     } else {
       message.error("Failed to upload image.");
     }
   };
+
   //@ts-ignore
 
   const onSubmit = async (values: any) => {
-    const data = { id, service_image: imageUrl, ...values };
+    const data = { id, ...values };
     console.log("values : ", data);
     message.loading("Creating...");
     try {
-      const res = await updateService(data);
+      const res = await updateUser(data);
       console.log("res ", res);
       if (!!res) {
-        message.success("Service updated successfully!");
-        router.push("/admin/service");
+        message.success("My Profile updated successfully!");
+        router.push("/admin/manage-user");
       }
     } catch (err: any) {
       console.error(err.message);
@@ -75,42 +65,35 @@ const EditDepartmentPage = ({ params }: IDProps) => {
 
   // @ts-ignore
   const defaultValues = {
-    serviceName: data?.serviceName || "",
-    serviceAuthor: data?.serviceAuthor || "",
-    status: data?.status || "",
-    schedule: data?.schedule || "",
-    price: data?.price || "",
-    location: data?.location || "",
-    category: data?.category || "",
-    description: data?.description || "",
-    serviceCode: data?.serviceCode || "",
+    name: data?.name || "",
+    email: data?.email || "",
+    contactNo: data?.contactNo || "",
+    address: data?.address || "",
   };
-
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-
   return (
     <div>
       <TMSBreadCrumb
         items={[
           {
-            label: "admin",
-            link: "/admin/service",
+            label: "Profile",
+            link: "/profile",
           },
         ]}
       />
 
-      <ActionBar title="Update Service"> </ActionBar>
+      <ActionBar title="Update Booking"> </ActionBar>
 
       <div>
         <Form
           submitHandler={onSubmit}
           defaultValues={defaultValues}
-          resolver={yupResolver(serviceSchema)}
+          // resolver={yupResolver(serviceSchema)}
         >
           <div
             style={{
@@ -126,7 +109,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
                 marginBottom: "10px",
               }}
             >
-              Service Information
+              Booking Information
             </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col
@@ -136,14 +119,8 @@ const EditDepartmentPage = ({ params }: IDProps) => {
                   marginBottom: "10px",
                 }}
               >
-                <FormInput
-                  type="text"
-                  name="serviceName"
-                  size="large"
-                  label="Service Name"
-                />
+                <FormInput type="text" name="name" size="large" label="Name" />
               </Col>
-
               <Col
                 className="gutter-row"
                 span={8}
@@ -153,59 +130,11 @@ const EditDepartmentPage = ({ params }: IDProps) => {
               >
                 <FormInput
                   type="text"
-                  name="serviceCode"
+                  name="email"
                   size="large"
-                  label="service Code"
+                  label="Email"
                 />
               </Col>
-
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="category"
-                  options={serviceCategoryOptions}
-                  label="category"
-                  placeholder="Select"
-                />
-              </Col>
-
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="schedule"
-                  options={serviceScheduleOptions}
-                  label="schedule"
-                  placeholder="Select"
-                />
-              </Col>
-
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="number"
-                  name="price"
-                  size="large"
-                  label="Price"
-                />
-              </Col>
-
               <Col
                 className="gutter-row"
                 span={8}
@@ -215,20 +144,11 @@ const EditDepartmentPage = ({ params }: IDProps) => {
               >
                 <FormInput
                   type="text"
-                  name="serviceAuthor"
+                  name="contactNo"
                   size="large"
-                  label="service Author"
+                  label="Contact No"
                 />
               </Col>
-
-              <Col span={12} style={{ margin: "10px 0" }}>
-                <FormTextArea name="description" label="Description" rows={4} />
-              </Col>
-
-              <Col span={12} style={{ margin: "10px 0" }}>
-                <FormTextArea name="location" label="Location" rows={4} />
-              </Col>
-
               <Col
                 className="gutter-row"
                 span={8}
@@ -236,12 +156,11 @@ const EditDepartmentPage = ({ params }: IDProps) => {
                   marginBottom: "10px",
                 }}
               >
-                <FormSelectField
+                <FormInput
+                  type="text"
+                  name="address"
                   size="large"
-                  name="status"
-                  options={serviceStatusOptions}
-                  label="status"
-                  placeholder="Select"
+                  label="Contact No"
                 />
               </Col>
 
@@ -284,4 +203,4 @@ const EditDepartmentPage = ({ params }: IDProps) => {
   );
 };
 
-export default EditDepartmentPage;
+export default ProfileEditPage;

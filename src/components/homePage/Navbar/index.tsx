@@ -1,38 +1,14 @@
 "use client";
-import {
-  Menu,
-  Row,
-  Col,
-  Avatar,
-  Input,
-  Button,
-  Layout,
-  MenuProps,
-  Dropdown,
-  Space,
-  Drawer,
-  Badge,
-} from "antd";
+import { Menu, Row, Col, Input, Button, Layout, MenuProps } from "antd";
 import Link from "next/link";
 import { SearchOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import { useState } from "react";
-import { UserOutlined } from "@ant-design/icons";
 import { authKey } from "@/constants/storageKey";
 const { Header: AntHeader } = Layout;
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
-
-  const showDrawer = () => {
-    setOpen(true);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
-
   const router = useRouter();
 
   const logOut = () => {
@@ -40,16 +16,6 @@ const Navbar = () => {
     router.push("/login");
   };
 
-  const items: MenuProps["items"] = [
-    {
-      key: "0",
-      label: (
-        <Button onClick={logOut} type="text" danger>
-          Logout
-        </Button>
-      ),
-    },
-  ];
   const handleSearch = (value: string) => {
     // Implement your search logic here
     console.log("Searching for:", value);
@@ -83,15 +49,15 @@ const Navbar = () => {
             >
               <Link href="/">About</Link>
             </Menu.Item>
-            {/* <Menu.Item
+            <Menu.Item
               key="home"
               style={{
                 fontSize: "18px",
                 fontWeight: "bold",
               }}
             >
-              <Link href="/">Contact Us</Link>
-            </Menu.Item> */}
+              <Link href="/blog">Blog</Link>
+            </Menu.Item>
             <Menu.Item
               key="dashboard"
               style={{
@@ -102,14 +68,37 @@ const Navbar = () => {
               <Link href="/profile">Dashboard</Link>
             </Menu.Item>
 
-            {/* <Menu.Item
-              style={{
-                fontSize: "18px",
-                fontWeight: "bold",
-              }}
-            >
-              <Avatar size={64} src="your-image-url.jpg" alt="Your Name" />
-            </Menu.Item> */}
+
+            <Menu.Item
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Link href="/login">Login</Link>
+              </Menu.Item>
+
+            {/* {role ? (
+              <Menu.Item
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Button onClick={logOut} type="text" danger>
+                  Logout
+                </Button>
+              </Menu.Item>
+            ) : (
+              <Menu.Item
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Link href="/login">Login</Link>
+              </Menu.Item>
+            )} */}
             <Menu.Item
               style={{
                 fontSize: "22px",

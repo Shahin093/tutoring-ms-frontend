@@ -18,81 +18,82 @@ import { useState } from "react";
 const { Header: AntHeader } = Layout;
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
+  // const showDrawer = () => {
+  //   setOpen(true);
+  // };
 
-  const onClose = () => {
-    setOpen(false);
-  };
+  // const onClose = () => {
+  //   setOpen(false);
+  // };
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const logOut = () => {
-    removeUserInfo(authKey);
-    router.push("/login");
-  };
+  // const logOut = () => {
+  //   removeUserInfo(authKey);
+  //   router.push("/login");
+  // };
 
-  const items: MenuProps["items"] = [
-    {
-      key: "0",
-      label: (
-        <Button onClick={logOut} type="text" danger>
-          Logout
-        </Button>
-      ),
-    },
-  ];
-  const { role } = getUserInfo() as any;
+  // const items: MenuProps["items"] = [
+  //   {
+  //     key: "0",
+  //     label: (
+  //       <Button onClick={logOut} type="text" danger>
+  //         Logout
+  //       </Button>
+  //     ),
+  //   },
+  // ];
+  // const { role } = getUserInfo() as any;
   return (
-    <AntHeader
-      style={{
-        background: "#fff",
-      }}
-    >
-      <Row
-        justify="end"
-        align="middle"
-        style={{
-          height: "100%",
-          gap: "5px",
-        }}
-      >
-        <p
-          style={{
-            margin: "0px 5px",
-          }}
-        >
-          {role}
-        </p>
+    <div></div>
+    // <AntHeader
+    //   style={{
+    //     background: "#fff",
+    //   }}
+    // >
+    //   <Row
+    //     justify="end"
+    //     align="middle"
+    //     style={{
+    //       height: "100%",
+    //       gap: "5px",
+    //     }}
+    //   >
+    //     <p
+    //       style={{
+    //         margin: "0px 5px",
+    //       }}
+    //     >
+    //       {role}
+    //     </p>
 
-        <Dropdown menu={{ items }}>
-          <a>
-            <Space wrap size={16}>
-              <Avatar size="large" icon={<UserOutlined />} />
-            </Space>
-          </a>
-        </Dropdown>
-        <a href="#" onClick={showDrawer}>
-          <Badge count={5}>
-            <Avatar shape="square" size="large" />
-          </Badge>
-        </a>
-      </Row>
+    //     <Dropdown menu={{ items }}>
+    //       <a>
+    //         <Space wrap size={16}>
+    //           <Avatar size="large" icon={<UserOutlined />} />
+    //         </Space>
+    //       </a>
+    //     </Dropdown>
+    //     <a href="#" onClick={showDrawer}>
+    //       <Badge count={5}>
+    //         <Avatar shape="square" size="large" />
+    //       </Badge>
+    //     </a>
+    //   </Row>
 
-      <Drawer
-        title="Basic Drawer"
-        placement="right"
-        onClose={onClose}
-        open={open}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
-    </AntHeader>
+    //   <Drawer
+    //     title="Basic Drawer"
+    //     placement="right"
+    //     onClose={onClose}
+    //     open={open}
+    //   >
+    //     <p>Some contents...</p>
+    //     <p>Some contents...</p>
+    //     <p>Some contents...</p>
+    //   </Drawer>
+    // </AntHeader>
   );
 };
 

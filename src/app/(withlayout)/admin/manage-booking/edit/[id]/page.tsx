@@ -31,14 +31,14 @@ import {
   useBookingQuery,
   useUpdateBookingMutation,
 } from "@/redux/api/bookingApi";
-
+import { useRouter } from "next/navigation";
 type IDProps = {
   params: any;
 };
 
 const EditDepartmentPage = ({ params }: IDProps) => {
   const { id } = params;
-
+  const router = useRouter();
   const { data, isLoading } = useBookingQuery(id);
   console.log("data", data);
   const [updateBooking] = useUpdateBookingMutation();
@@ -54,6 +54,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
       console.log("res ", res);
       if (!!res) {
         message.success("Booking updated successfully!");
+        router.push("/admin/manage-booking");
       }
     } catch (err: any) {
       console.error(err.message);

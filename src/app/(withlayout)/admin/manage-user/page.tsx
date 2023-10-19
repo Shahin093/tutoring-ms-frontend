@@ -97,11 +97,6 @@ const ManageUser = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/manage-booking/details/${data.id}`}>
-              <Button onClick={() => console.log(data)} type="primary">
-                <EyeOutlined />
-              </Button>
-            </Link>
             <Link href={`/admin/manage-user/edit/${data}`}>
               <Button
                 style={{

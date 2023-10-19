@@ -2,23 +2,22 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextArea";
-import { useAddContentDataMutation } from "@/redux/api/contentApi";
 import { useAddFeedbackDataMutation } from "@/redux/api/feedbackApi";
 import { Button, Col, Row, message } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const ManageContentPage = () => {
+const ManageFeedbackPage = () => {
   const router = useRouter();
-  const [addContentData] = useAddContentDataMutation();
+  const [addFeedbackData] = useAddFeedbackDataMutation();
   const onSubmit = async (values: any) => {
     console.log("values : ", values);
     message.loading("Creating...");
     try {
-      const res = await addContentData(values);
+      const res = await addFeedbackData(values);
       console.log("res ", res);
       if (!!res) {
-        message.success("content created successfully!");
+        message.success("FeedBack created successfully!");
         router.push("/profile");
       }
     } catch (err: any) {
@@ -74,7 +73,7 @@ const ManageContentPage = () => {
             </Col>
             <Col span={12} style={{ margin: "10px 0" }}>
               <FormTextArea
-                name="description"
+                name="suggestion"
                 label="Description"
                 placeholder="Type Description"
                 rows={4}
@@ -97,4 +96,4 @@ const ManageContentPage = () => {
   );
 };
 
-export default ManageContentPage;
+export default ManageFeedbackPage;

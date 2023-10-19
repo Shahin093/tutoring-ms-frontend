@@ -18,8 +18,8 @@ export const sidebarItems = (role: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/my-Booking`}>My Booking</Link>,
-          key: `/My-Booking`,
+          label: <Link href={`/myBooking`}>My Booking</Link>,
+          key: `/MyBooking`,
         },
       ],
     },
@@ -30,6 +30,11 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/manage-user`}>Manage User</Link>,
       icon: <TableOutlined />,
       key: `/${role}/manage-user`,
+    },
+    {
+      label: <Link href={`/manage-feedback`}>Manage Feedback</Link>,
+      icon: <TableOutlined />,
+      key: `/manage-feedback`,
     },
   ];
 

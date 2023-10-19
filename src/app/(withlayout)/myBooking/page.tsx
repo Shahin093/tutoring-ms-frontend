@@ -31,35 +31,6 @@ const renderContent = (column = 2) => (
   </Descriptions>
 );
 
-const extraContent = (
-  <div
-    style={{
-      display: "flex",
-      width: "max-content",
-      justifyContent: "flex-end",
-    }}
-  >
-    <Statistic
-      title="Status"
-      value="Pending"
-      style={{
-        marginRight: 32,
-      }}
-    />
-    <Statistic title="Price" prefix="$" value={568.08} />
-  </div>
-);
-
-const Content: React.FC<{
-  children: React.ReactNode;
-  extra: React.ReactNode;
-}> = ({ children, extra }) => (
-  <div className="content">
-    <div className="main">{children}</div>
-    <div className="extra">{extra}</div>
-  </div>
-);
-
 const MyBookingPage = () => {
   //@ts-ignore
   const { data, isLoading } = useMyProfileQuery(undefined);

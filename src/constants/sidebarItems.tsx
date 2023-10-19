@@ -18,12 +18,8 @@ export const sidebarItems = (role: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}`}>Account Profile</Link>,
-          key: `/${role}/profile`,
-        },
-        {
-          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
-          key: `/${role}/change-password`,
+          label: <Link href={`/my-Booking`}>My Booking</Link>,
+          key: `/My-Booking`,
         },
       ],
     },
@@ -84,6 +80,17 @@ export const sidebarItems = (role: string) => {
         },
       ],
     },
+    {
+      label: "Manage Content",
+      key: "manage-content",
+      icon: <AppstoreOutlined />,
+      children: [
+        {
+          label: <Link href={`/${role}/manage-content`}>Manage User</Link>,
+          key: `/${role}/manage-content`,
+        },
+      ],
+    },
   ];
 
   const superAdminSidebarItems: MenuProps["items"] = [
@@ -109,6 +116,11 @@ export const sidebarItems = (role: string) => {
 
   const userSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
+    {
+      label: <Link href={`/${role}/courses`}>Courses</Link>,
+      icon: <TableOutlined />,
+      key: `/${role}/courses`,
+    },
     {
       label: <Link href={`/${role}/courses`}>Courses</Link>,
       icon: <TableOutlined />,

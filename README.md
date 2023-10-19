@@ -1,3 +1,9 @@
+frontend github repo : https://github.com/Shahin093/tutoring-ms-frontend
+backend github repo : https://github.com/Shahin093/tutoring-ms-backend
+
+frontend live site : https://tutoring-ms.vercel.app/
+backend Live Site : https://tutoring-management-system.vercel.app/api/v1/
+
 #Tutoring Management and Booking System Website.(Frontend).
 
 ##Using Technologies : Typescript, ReactJS, NextJS(App Router), Redux(Redux-Toolkit), Ant Design ,used yup for Validation,

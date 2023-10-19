@@ -21,7 +21,7 @@ const ManageFeedbackPage = ({ params }: IDProps) => {
 
   const onSubmit = async (values: any) => {
     console.log("values : ", values);
-    const data = { userId: user?.userId, serviceId: id, ...values };
+    const data = { userId: user?.userId, serviceid: id, ...values };
     message.loading("Creating...");
     try {
       const res = await addReviewData(data);
@@ -72,7 +72,7 @@ const ManageFeedbackPage = ({ params }: IDProps) => {
                 }}
               >
                 <FormInput
-                  name="review-content"
+                  name="review_Comment"
                   type="text"
                   size="large"
                   label="Description"
@@ -88,7 +88,7 @@ const ManageFeedbackPage = ({ params }: IDProps) => {
                 }}
               >
                 <FormInput
-                  name="review-count"
+                  name="reatingCount"
                   type="number"
                   size="large"
                   label="Review Rating"

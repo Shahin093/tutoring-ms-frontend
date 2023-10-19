@@ -40,8 +40,8 @@ export const sidebarItems = (role: string) => {
   ];
 
   const adminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    ...commonAdminSidebarItems,
+    // ...defaultSidebarItems,
+    // ...commonAdminSidebarItems,
     {
       label: "Manage Service",
       key: "manage-service",
@@ -90,8 +90,8 @@ export const sidebarItems = (role: string) => {
   ];
 
   const superAdminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    ...commonAdminSidebarItems,
+    // ...defaultSidebarItems,
+    // ...commonAdminSidebarItems,
     {
       label: "Manage Admin",
       key: "manage-admin",

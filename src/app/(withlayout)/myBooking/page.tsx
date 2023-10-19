@@ -1,5 +1,6 @@
 "use client";
 
+import TMSModal from "@/components/ui/TMSModal";
 import TMSTable from "@/components/ui/TMSTable";
 import { useDeleteBookingMutation } from "@/redux/api/bookingApi";
 import { useMyProfileQuery } from "@/redux/api/profileApi";
@@ -10,7 +11,16 @@ import {
   ReloadOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import { Button, Descriptions, Statistic, Tabs, message } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Descriptions,
+  Row,
+  Statistic,
+  Tabs,
+  message,
+} from "antd";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useState } from "react";
@@ -90,42 +100,6 @@ const MyBookingPage = () => {
       title: "Status",
       dataIndex: "status",
     },
-
-    {
-      title: "Action",
-      dataIndex: "id",
-      render: function (userData: any) {
-        return (
-          <>
-            <Button
-              type="primary"
-              onClick={() => {
-                setOpen(true);
-                setServiceId(userData?.id);
-              }}
-              danger
-              style={{ marginLeft: "3px" }}
-            >
-              <DeleteOutlined />
-            </Button>
-          </>
-        );
-      },
-    },
-
-    {
-      title: "",
-      dataIndex: "id",
-      render: function (userData: any) {
-        return (
-          <Link href={`/create-review/${userData?.service?.id}`}>
-            <Button type="primary" danger style={{ marginLeft: "3px" }}>
-              Review
-            </Button>
-          </Link>
-        );
-      },
-    },
   ];
 
   const deleteServiceHandler = async (id: string) => {
@@ -163,6 +137,53 @@ const MyBookingPage = () => {
         showPagination={true}
         rowClassName={customRowClassName} // Provide the custom row class name function
       />
+
+      <div>
+        <h2>Review and Remove Booking</h2>
+        <Row gutter={16}>
+          {data &&
+            data?.user.map((userData: any, index: number) => (
+              <Col key={index} span={8}>
+                <Card style={{ margin: "13px" }}>
+                  <div className="testimonials-container-profile">
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setOpen(true);
+                        setServiceId(userData?.service?.id);
+                      }}
+                      danger
+                      style={{ marginLeft: "3px" }}
+                    >
+                      <DeleteOutlined />
+                    </Button>
+
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setOpen(true);
+                        setServiceId(userData?.id);
+                      }}
+                      danger
+                      style={{ marginLeft: "3px" }}
+                    >
+                      Review
+                    </Button>
+                  </div>
+                </Card>
+              </Col>
+            ))}
+        </Row>
+      </div>
+
+      <TMSModal
+        title="Remove Booking"
+        isOpen={open}
+        closeModal={() => setOpen(false)}
+        handleOk={() => deleteServiceHandler(serviceId)}
+      >
+        <p className="my-5">Do you want to remove this Booking?</p>
+      </TMSModal>
     </div>
   );
 };

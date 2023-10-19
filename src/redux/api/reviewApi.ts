@@ -8,7 +8,7 @@ export const bookingApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     addReviewData: build.mutation({
       query: (data) => ({
-        url: `${BOOKING_URL}/create-reviews`,
+        url: `${BOOKING_URL}/create-review`,
         method: "POST",
         data,
       }),

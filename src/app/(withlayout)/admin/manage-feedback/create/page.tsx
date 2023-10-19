@@ -18,7 +18,7 @@ const ManageFeedbackPage = () => {
       console.log("res ", res);
       if (!!res) {
         message.success("FeedBack created successfully!");
-        router.push("/home");
+        router.push("/");
       }
     } catch (err: any) {
       console.error(err.message);

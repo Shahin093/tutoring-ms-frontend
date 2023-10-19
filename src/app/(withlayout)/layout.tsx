@@ -1,4 +1,5 @@
 "use client";
+import { FooterLinks } from "@/components/homePage/Footer";
 import Contents from "@/components/ui/Contents";
 import SideBar from "@/components/ui/Sidebar";
 import { isLoggedIn } from "@/services/auth.service";

@@ -94,7 +94,7 @@ const ManageAdmin = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/manage-admin/edit/${data}`}>
+            <Link href={`/super_admin/manage-admin/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",

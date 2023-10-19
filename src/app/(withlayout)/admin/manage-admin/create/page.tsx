@@ -9,15 +9,15 @@ import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { registrationSchema } from "@/schemas/registration";
-import { useUserSignupMutation } from "@/redux/api/user.Api";
 import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
+import { useAddAdminDataMutation } from "@/redux/api/adminApi";
 
 type FormValues = {
   id: string;
   password: string;
 };
 
-const Registration = () => {
+const CreateAdmin = () => {
   // const [imageUrl, setImageUrl] = useState<string | undefined>();
 
   const [loading, setLoading] = useState(false);
@@ -50,18 +50,17 @@ const Registration = () => {
 
   console.log("imageUrl", imageUrl);
 
-  const [userSignup] = useUserSignupMutation();
+  const [addAdminData] = useAddAdminDataMutation();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     const registrationData = { profileImg: imageUrl, ...data };
     console.log({ ...registrationData });
     try {
-      const res = await userSignup({ ...registrationData });
-      console.log("res: ", res);
+      const res = await addAdminData({ ...registrationData });
       if (res) {
-        router.push("/admin/manage-user");
-        message.success("User Sign up  successfully!");
+        router.push("/admin/manage-admin");
+        message.success("admin Sign up  successfully!");
       }
 
       console.log({ imageUrl, ...data });
@@ -81,8 +80,8 @@ const Registration = () => {
       <TMSBreadCrumb
         items={[
           {
-            label: "Manage-user",
-            link: "/admin/manage-user",
+            label: "Manage-admin",
+            link: "/admin/manage-admin",
           },
         ]}
       />
@@ -99,10 +98,11 @@ const Registration = () => {
         >
           <h2
             style={{
-              fontSize: "20px",
+              fontSize: "30px",
+              padding: "10px",
             }}
           >
-            User Creating{" "}
+            Admin Creating{" "}
           </h2>
           <Row
             justify="center"
@@ -233,4 +233,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default CreateAdmin;

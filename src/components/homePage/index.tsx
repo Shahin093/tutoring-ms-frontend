@@ -1,3 +1,4 @@
+"use client";
 import CategoryWiseServices from "./CategoryWiseServices";
 import HeaderPage from "./Header";
 import MyStory from "./MyStory";

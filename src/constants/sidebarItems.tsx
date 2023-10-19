@@ -1,3 +1,4 @@
+"use client";
 import type { MenuProps } from "antd";
 import {
   ProfileOutlined,
@@ -23,6 +24,11 @@ export const sidebarItems = (role: string) => {
         },
       ],
     },
+    {
+      label: <Link href={`/manage-feedback`}>Manage Feedback</Link>,
+      icon: <TableOutlined />,
+      key: `/manage-feedback`,
+    },
   ];
 
   const commonAdminSidebarItems: MenuProps["items"] = [
@@ -30,11 +36,6 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/manage-user`}>Manage User</Link>,
       icon: <TableOutlined />,
       key: `/${role}/manage-user`,
-    },
-    {
-      label: <Link href={`/manage-feedback`}>Manage Feedback</Link>,
-      icon: <TableOutlined />,
-      key: `/manage-feedback`,
     },
   ];
 
@@ -52,17 +53,7 @@ export const sidebarItems = (role: string) => {
         },
       ],
     },
-    {
-      label: "Manage Admin",
-      key: "manage-admin",
-      icon: <AppstoreOutlined />,
-      children: [
-        {
-          label: <Link href={`/${role}/manage-admin`}>Manage Admin</Link>,
-          key: `/${role}/manage-admin`,
-        },
-      ],
-    },
+
     {
       label: "Manage booking",
       key: "manage-booking",
@@ -102,36 +93,19 @@ export const sidebarItems = (role: string) => {
     ...defaultSidebarItems,
     ...commonAdminSidebarItems,
     {
-      label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/admin`,
-    },
-    {
-      label: "Management",
-      key: "management",
+      label: "Manage Admin",
+      key: "manage-admin",
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/department`}>Department</Link>,
-          key: `/${role}/department`,
+          label: <Link href={`/${role}/manage-admin`}>Manage Admin</Link>,
+          key: `/${role}/manage-admin`,
         },
       ],
     },
   ];
 
-  const userSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    {
-      label: <Link href={`/${role}/courses`}>Courses</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/courses`,
-    },
-    {
-      label: <Link href={`/${role}/courses`}>Courses</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/courses`,
-    },
-  ];
+  const userSidebarItems: MenuProps["items"] = [...defaultSidebarItems];
 
   if (role === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;
   else if (role === USER_ROLE.ADMIN) return adminSidebarItems;

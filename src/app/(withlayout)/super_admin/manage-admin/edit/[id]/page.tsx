@@ -2,17 +2,14 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import {
-  UploadOutlined,
-  LoadingOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import ActionBar from "@/components/ui/ActionBar";
 import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
 import { useUpdateUserMutation, useUserQuery } from "@/redux/api/user.Api";
 import { Button, Col, Row, Upload, message } from "antd";
 import { useState } from "react";
 import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
+import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
 import { useRouter } from "next/navigation";
 
 type IDProps = {
@@ -22,9 +19,9 @@ const ProfileEditPage = ({ params }: IDProps) => {
   const { id } = params;
   const router = useRouter();
 
-  const { data, isLoading } = useUserQuery(id);
-
-  const [updateUser] = useUpdateUserMutation();
+  const { data, isLoading } = useAdminQuery(id);
+  console.log("data", data);
+  const [updateAdmin] = useUpdateAdminMutation();
 
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
@@ -39,7 +36,6 @@ const ProfileEditPage = ({ params }: IDProps) => {
     if (imageUrl) {
       setImageUrl(imageUrl);
       message.success("Image uploaded successfully!");
-      router.push("/profile");
     } else {
       message.error("Failed to upload image.");
     }
@@ -52,10 +48,11 @@ const ProfileEditPage = ({ params }: IDProps) => {
     console.log("values : ", data);
     message.loading("Creating...");
     try {
-      const res = await updateUser(data);
+      const res = await updateAdmin(data);
       console.log("res ", res);
       if (!!res) {
-        message.success("My Profile updated successfully!");
+        message.success("admin updated successfully!");
+        router.push("/super_admin/manage-admin");
       }
     } catch (err: any) {
       console.error(err.message);
@@ -80,13 +77,13 @@ const ProfileEditPage = ({ params }: IDProps) => {
       <TMSBreadCrumb
         items={[
           {
-            label: "Profile",
-            link: "/profile",
+            label: "manage-admin",
+            link: "/admin/manage-admin",
           },
         ]}
       />
 
-      <ActionBar title="Update Booking"> </ActionBar>
+      <ActionBar title="Update Admin"> </ActionBar>
 
       <div>
         <Form
@@ -108,7 +105,7 @@ const ProfileEditPage = ({ params }: IDProps) => {
                 marginBottom: "10px",
               }}
             >
-              Booking Information
+              admin creating
             </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col
@@ -194,7 +191,7 @@ const ProfileEditPage = ({ params }: IDProps) => {
           </div>
 
           <Button type="primary" htmlType="submit">
-            Update
+            Update Admin
           </Button>
         </Form>
       </div>

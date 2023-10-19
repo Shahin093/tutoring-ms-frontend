@@ -1,3 +1,4 @@
+"use client";
 import { Modal } from "antd";
 import { ReactElement, ReactNode } from "react";
 

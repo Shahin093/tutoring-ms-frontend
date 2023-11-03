@@ -39,7 +39,6 @@ const ProfileEditPage = ({ params }: IDProps) => {
     if (imageUrl) {
       setImageUrl(imageUrl);
       message.success("Image uploaded successfully!");
-     
     } else {
       message.error("Failed to upload image.");
     }
@@ -87,7 +86,7 @@ const ProfileEditPage = ({ params }: IDProps) => {
         ]}
       />
 
-      <ActionBar title="Update Booking"> </ActionBar>
+      <ActionBar title="Update User"> </ActionBar>
 
       <div>
         <Form
@@ -109,7 +108,7 @@ const ProfileEditPage = ({ params }: IDProps) => {
                 marginBottom: "10px",
               }}
             >
-              Booking Information
+              User Information
             </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col

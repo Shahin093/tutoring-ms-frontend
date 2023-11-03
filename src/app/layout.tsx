@@ -6,7 +6,7 @@ import ScrollToTopButton from "@/components/homePage/ScrollToTopButton/ScrollToT
 import Navbar from "@/components/homePage/Navbar";
 import { FooterLinks } from "@/components/homePage/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin-ext"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",

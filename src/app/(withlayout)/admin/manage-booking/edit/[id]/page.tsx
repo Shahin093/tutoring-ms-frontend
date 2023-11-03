@@ -1,32 +1,17 @@
 "use client";
 
 import Form from "@/components/Forms/Form";
-import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
-import FormTextArea from "@/components/Forms/FormTextArea";
 import ActionBar from "@/components/ui/ActionBar";
 import TMSBreadCrumb from "@/components/ui/TMSBreadCrumb";
 import {
+  bookingStatusOptions,
   serviceCategoryOptions,
   serviceScheduleOptions,
   serviceStatusOptions,
 } from "@/constants/global";
-import {
-  useServiceQuery,
-  useServicesQuery,
-  useUpdateServiceMutation,
-} from "@/redux/api/serviceApi";
-import {
-  UploadOutlined,
-  LoadingOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-import { serviceSchema } from "@/schemas/service";
-import { uploadImageToImgBB } from "@/utils/uploadImageWithImgBB";
-import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Button, Col, Row, Upload, message } from "antd";
-import { useState } from "react";
+import { Button, Col, Row, message } from "antd";
 import {
   useBookingQuery,
   useUpdateBookingMutation,
@@ -51,6 +36,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
     message.loading("Creating...");
     try {
       const res = await updateBooking(data);
+      // console.log("values : ", data);
       console.log("res ", res);
       if (!!res) {
         message.success("Booking updated successfully!");
@@ -63,15 +49,15 @@ const EditDepartmentPage = ({ params }: IDProps) => {
 
   // @ts-ignore
   const defaultValues = {
-    serviceName: data?.serviceName || "",
-    serviceAuthor: data?.serviceAuthor || "",
+    // serviceName: data?.serviceName || "",
+    // serviceAuthor: data?.serviceAuthor || "",
     status: data?.status || "",
     schedule: data?.schedule || "",
-    price: data?.price || "",
-    location: data?.location || "",
+    // price: data?.price || "",
+    // location: data?.location || "",
     category: data?.category || "",
-    description: data?.description || "",
-    serviceCode: data?.serviceCode || "",
+    // description: data?.description || "",
+    // serviceCode: data?.serviceCode || "",
   };
 
   return (
@@ -88,11 +74,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
       <ActionBar title="Update Booking"> </ActionBar>
 
       <div>
-        <Form
-          submitHandler={onSubmit}
-          defaultValues={defaultValues}
-          // resolver={yupResolver(serviceSchema)}
-        >
+        <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -121,7 +103,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
                   size="large"
                   name="category"
                   options={serviceCategoryOptions}
-                  label="category"
+                  label="Category"
                   placeholder="Select"
                 />
               </Col>
@@ -137,7 +119,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
                   size="large"
                   name="schedule"
                   options={serviceScheduleOptions}
-                  label="schedule"
+                  label="Schedule"
                   placeholder="Select"
                 />
               </Col>
@@ -152,8 +134,8 @@ const EditDepartmentPage = ({ params }: IDProps) => {
                 <FormSelectField
                   size="large"
                   name="status"
-                  options={serviceStatusOptions}
-                  label="status"
+                  options={bookingStatusOptions}
+                  label="Status"
                   placeholder="Select"
                 />
               </Col>

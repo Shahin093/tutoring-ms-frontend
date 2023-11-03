@@ -46,3 +46,15 @@ export const serviceStatusOptions = [
     value: "WITHDRAWN",
   },
 ];
+
+export const bookingStatusOptions = [
+  {
+    label: "PENDING",
+    value: "PENDING",
+  },
+
+  {
+    label: "COMPLETED",
+    value: "COMPLETED",
+  },
+];

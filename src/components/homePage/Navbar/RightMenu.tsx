@@ -1,8 +1,17 @@
-import React from "react";
+"use client";
 import { Menu, Avatar } from "antd";
 import { UserOutlined, CodeOutlined, LogoutOutlined } from "@ant-design/icons";
+import { removeUserInfo } from "@/services/auth.service";
+import { authKey } from "@/constants/storageKey";
+import { useRouter } from "next/navigation";
 
 const RightMenu = ({ mode }: any) => {
+  const router: any = useRouter();
+
+  const logOut = () => {
+    removeUserInfo(authKey);
+    router?.push("/login");
+  };
   return (
     <Menu mode={mode}>
       <Menu.SubMenu
@@ -19,7 +28,7 @@ const RightMenu = ({ mode }: any) => {
         <Menu.Item key="about-us">
           <UserOutlined /> Profile
         </Menu.Item>
-        <Menu.Item key="log-out">
+        <Menu.Item key="log-out" onClick={logOut}>
           <LogoutOutlined /> Logout
         </Menu.Item>
       </Menu.SubMenu>

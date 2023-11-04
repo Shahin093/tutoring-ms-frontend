@@ -31,47 +31,6 @@ const Navbar = () => {
   const { role } = getUserInfo() as any;
 
   return (
-    // <nav className="navbar">
-    //   <Layout>
-    //     <Layout.Header className="nav-header">
-    //       <div className="logo">
-    //         <Link href="/">
-    //           <h3
-    //             className="brand-font"
-    //             style={{
-    //               color: "white",
-    //             }}
-    //           >
-    //             Tutor MS
-    //           </h3>
-    //         </Link>
-    //       </div>
-    //       <div className="navbar-menu">
-    //         <div className="leftMenu">
-    //           <LeftMenu mode={"horizontal"} />
-    //         </div>
-    //         <Button className="menuButton" type="text" onClick={showDrawer}>
-    //           <MenuOutlined />
-    //         </Button>
-    //         <div className="rightMenu">
-    //           <RightMenu mode={"horizontal"} />
-    //         </div>
-
-    //         <Drawer
-    //           title={"Brand Here"}
-    //           placement="right"
-    //           closable={true}
-    //           onClose={showDrawer}
-    //           visible={visible}
-    //           style={{ zIndex: 99999 }}
-    //         >
-    //           <LeftMenu mode={"inline"} />
-    //           <RightMenu mode={"inline"} />
-    //         </Drawer>
-    //       </div>
-    //     </Layout.Header>
-    //   </Layout>
-    // </nav>
     <div style={{ height: "10vh", marginTop: "30px" }}>
       <div
         style={{
@@ -97,7 +56,7 @@ const Navbar = () => {
         <AppMenu />
       </span>
 
-      <Drawer
+      {/* <Drawer
         placement="left"
         open={openMenu}
         onClose={() => {
@@ -107,7 +66,7 @@ const Navbar = () => {
         bodyStyle={{ backgroundColor: "dark" }}
       >
         <AppMenu isInLine={true} />
-      </Drawer>
+      </Drawer>  */}
     </div>
   );
 };
@@ -140,29 +99,25 @@ function AppMenu({ isInLine = false }) {
       }}
     >
       <div>
-        <h2 style={{ fontSize: "30px" }}>Tutor MS</h2>
+        <Link href="/">
+          <h2 style={{ fontSize: "30px" }}>Tutor</h2>
+        </Link>
       </div>
       <Menu
         style={{
-          // backgroundColor: "gray",
           color: "black",
           fontSize: 24,
           border: "none",
           display: "flex",
           justifyContent: "center",
-          // position: "fixed",
         }}
         mode={isInLine ? "inline" : "horizontal"}
         items={[
-          {
-            label: <Link href="/">Home</Link>, // Wrap the label with Link and specify the target route
-            key: "home",
-          },
+          // {
+          //   label: <Link href="/">Home</Link>, // Wrap the label with Link and specify the target route
+          //   key: "home",
+          // },
 
-          {
-            label: <Link href="/about">About Us</Link>, // Specify the target route for About Us
-            key: "about",
-          },
           {
             label: loginButton, // Specify the target route for Login
             key: "login",
@@ -170,6 +125,16 @@ function AppMenu({ isInLine = false }) {
           {
             label: <Link href="/profile">Dashboard</Link>, // Specify the target route for Dashboard
             key: "profile",
+          },
+          {
+            label: (
+              <Link href="/service-booking">
+                <Button type="primary" shape="round" size="large">
+                  Booking
+                </Button>
+              </Link>
+            ), // Specify the target route for About Us
+            key: "booking",
           },
         ]}
       ></Menu>

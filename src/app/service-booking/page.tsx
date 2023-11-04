@@ -3,7 +3,16 @@
 import { useServicesQuery } from "@/redux/api/serviceApi";
 import { useDebounced } from "@/redux/hooks";
 import { IService } from "@/types";
-import { Layout, Space, Card, Select, SelectProps, Avatar, Button } from "antd";
+import {
+  Layout,
+  Space,
+  Card,
+  Select,
+  SelectProps,
+  Avatar,
+  Button,
+  Input,
+} from "antd";
 import { useState } from "react";
 import { ReloadOutlined } from "@ant-design/icons";
 import styled from "styled-components";
@@ -13,12 +22,11 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
   textAlign: "center",
-  color: "#fff",
+  color: "gray",
   height: 64,
-  //   width: 30,
   paddingInline: 50,
   lineHeight: "64px",
-  backgroundColor: "#7dbcea",
+  backgroundColor: "#0050b3",
 };
 
 const contentStyle: React.CSSProperties = {
@@ -131,39 +139,40 @@ const ServiceBookingPage = () => {
 
   return (
     <Layout>
-      <Header style={headerStyle}>Header</Header>
-      <Layout hasSider>
-        <Sider style={siderStyle}>
-          {(!!sortBy ||
-            !!sortOrder ||
-            !!searchTerm ||
-            !!location ||
-            !!serviceName) && (
-            <Button
-              style={{ margin: "0px 5px" }}
-              type="primary"
-              onClick={resetFilters}
-            >
-              <ReloadOutlined />
-              Refresh
-            </Button>
-          )}
-          <h1>Tutor-MS</h1>
+      <Header style={headerStyle}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            justifyItems: "center",
+            gap: "5px",
+            marginTop: "10px",
+          }}
+        >
           <Select
-            // mode="multiple"
-            style={{ width: "80%" }}
+            style={{ width: "80%", height: "40px" }}
             placeholder="Service Name"
             onChange={handleChangeServiceName}
             options={serviceNameOptions}
           />
           <Select
-            // mode="multiple"
-            style={{ width: "80%" }}
+            style={{ width: "80%", height: "40px" }}
             placeholder="Location"
             onChange={handleChangeLocation}
             options={locationOptions}
           />
-        </Sider>
+          <Input
+            size="large"
+            placeholder="Search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: "20%",
+            }}
+          />
+        </div>
+      </Header>
+      <Layout hasSider>
         <Content
           style={{
             backgroundColor: "#b5f5ec",
@@ -178,32 +187,38 @@ const ServiceBookingPage = () => {
             {services?.map((service: IService, index: number) => (
               <CardComponent key={index}>
                 <Link href={`detailsService/${service?.id}`}>
-                <Card
-                  style={{
-                    backgroundColor: "#b5f5ec",
-                    // display: "flex",
-                    gap: "40px",
-                  }}
-                  type="inner"
-                  title={service?.serviceName}
-                  extra={<a href="#">More</a>}
-                >
-                  <div style={{ display: "flex" }}>
-                    <Avatar src={service?.service_image}></Avatar>
-                    <h4 style={{ marginLeft: "20px" }}>
-                      {service?.serviceName}
-                    </h4>
-                    <h4 style={{ marginLeft: "20px" }}>
-                      {service?.serviceCode}
-                    </h4>
-                    <h4 style={{ marginLeft: "20px" }}>{service?.location}</h4>
-                    <h4 style={{ marginLeft: "20px" }}>{service?.schedule}</h4>
-                    <h4 style={{ marginLeft: "20px" }}>{service?.category}</h4>
-                    <h4 style={{ marginLeft: "20px" }}>
-                      {service?.serviceAuthor}
-                    </h4>
-                  </div>
-                </Card>
+                  <Card
+                    style={{
+                      backgroundColor: "#b5f5ec",
+                      // display: "flex",
+                      gap: "40px",
+                    }}
+                    type="inner"
+                    title={service?.serviceName}
+                    extra={<a href="#">More</a>}
+                  >
+                    <div style={{ display: "flex" }}>
+                      <Avatar src={service?.service_image}></Avatar>
+                      <h4 style={{ marginLeft: "20px" }}>
+                        {service?.serviceName}
+                      </h4>
+                      <h4 style={{ marginLeft: "20px" }}>
+                        {service?.serviceCode}
+                      </h4>
+                      <h4 style={{ marginLeft: "20px" }}>
+                        {service?.location}
+                      </h4>
+                      <h4 style={{ marginLeft: "20px" }}>
+                        {service?.schedule}
+                      </h4>
+                      <h4 style={{ marginLeft: "20px" }}>
+                        {service?.category}
+                      </h4>
+                      <h4 style={{ marginLeft: "20px" }}>
+                        {service?.serviceAuthor}
+                      </h4>
+                    </div>
+                  </Card>
                 </Link>
               </CardComponent>
             ))}

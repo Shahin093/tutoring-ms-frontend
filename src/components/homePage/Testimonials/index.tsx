@@ -10,7 +10,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div style={{ margin: "16px" }}>
+    <div style={{ margin: "16px", marginBottom: "100px" }}>
       <h1>Testimonials</h1>
       <Row gutter={16}>
         {testimonials.map((testimonial, index) => (

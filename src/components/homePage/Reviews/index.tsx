@@ -73,8 +73,8 @@ const Review = () => {
   return (
     <div
       style={{
-        marginTop: "200px",
-        marginBottom: "90px",
+        marginTop: "100px",
+        marginBottom: "100px",
         margin: "16px",
       }}
     >

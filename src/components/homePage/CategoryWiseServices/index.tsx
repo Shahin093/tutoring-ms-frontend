@@ -19,32 +19,24 @@ const CategoryWiseServices = () => {
     data &&
     data?.filter((categoryData: any) => categoryData.serviceName === "Math")[0];
 
-  console.log("datbangla Categorya: ", banglaCategory);
-  console.log(" english Category: ", englishCategory);
-  console.log("  math Category: ", mathCategory);
   return (
-    <div
-      style={{
-        marginTop: "80px",
-        marginBottom: "80px",
-        backgroundColor: "#fff1f0",
-        height: "600px",
-      }}
-    >
+    <div>
       <Row
         gutter={16}
         justify="center"
         style={{
-          padding: "35px",
+          padding: "5px",
         }}
       >
         <Col span={8}>
           <Card
             title="Bangla Specialize"
             bordered={false}
-            style={{
-              backgroundColor: "#fff1f0",
-            }}
+            style={
+              {
+                // backgroundColor: "#fff1f0",
+              }
+            }
           >
             <Card
               hoverable
@@ -55,20 +47,13 @@ const CategoryWiseServices = () => {
                     banglaCategory?.service_image ||
                     "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   }
-                  style={{
-                    width: "90%",
-                    height: "50%",
-                    justifyContent: "center",
-                    justifyItems: "center",
-                    marginLeft: "15px",
-                  }}
                 />
               }
             >
               <Meta
                 title={
                   banglaCategory?.serviceAuthor +
-                  ",  " +
+                  ", Teaching With " +
                   banglaCategory?.serviceName
                 }
                 description={banglaCategory?.description}
@@ -76,14 +61,9 @@ const CategoryWiseServices = () => {
             </Card>
           </Card>
         </Col>
+
         <Col span={8}>
-          <Card
-            title="English Specialize"
-            bordered={false}
-            style={{
-              backgroundColor: "#fff1f0",
-            }}
-          >
+          <Card title="English Specialize" bordered={false}>
             <Card
               hoverable
               cover={
@@ -93,20 +73,13 @@ const CategoryWiseServices = () => {
                     englishCategory?.service_image ||
                     "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   }
-                  style={{
-                    width: "90%",
-                    height: "50%",
-                    justifyContent: "center",
-                    justifyItems: "center",
-                    marginLeft: "15px",
-                  }}
                 />
               }
             >
               <Meta
                 title={
                   englishCategory?.serviceAuthor +
-                  ",  " +
+                  ", Teaching With " +
                   englishCategory?.serviceName
                 }
                 description={englishCategory?.description}
@@ -114,14 +87,9 @@ const CategoryWiseServices = () => {
             </Card>
           </Card>
         </Col>
+
         <Col span={8}>
-          <Card
-            title="Math Specialize"
-            bordered={false}
-            style={{
-              backgroundColor: "#fff1f0",
-            }}
-          >
+          <Card title="Math Specialize" bordered={false}>
             <Card
               hoverable
               cover={
@@ -131,19 +99,14 @@ const CategoryWiseServices = () => {
                     mathCategory?.service_image ||
                     "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   }
-                  style={{
-                    width: "90%",
-                    height: "50%",
-                    justifyContent: "center",
-                    justifyItems: "center",
-                    marginLeft: "15px",
-                  }}
                 />
               }
             >
               <Meta
                 title={
-                  mathCategory?.serviceAuthor + ", " + mathCategory?.serviceName
+                  mathCategory?.serviceAuthor +
+                  ", Teaching With  " +
+                  mathCategory?.serviceName
                 }
                 description={mathCategory?.description}
               />

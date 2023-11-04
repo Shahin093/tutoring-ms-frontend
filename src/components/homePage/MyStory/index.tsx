@@ -5,6 +5,7 @@ const MyStory = () => {
     <div
       style={{
         marginTop: "70px",
+        marginBottom: "150px",
       }}
     >
       <Row

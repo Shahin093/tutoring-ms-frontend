@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
 import { useUserLoginMutation } from "@/redux/api/authApi";
+import Link from "next/link";
 
 type FormValues = {
   email: string;
@@ -83,6 +84,13 @@ const LoginPage = () => {
             </Button>
           </Form>
         </div>
+        <p style={{ marginTop: 20 }}>
+          Not a Member ?{"  "}
+          <Link href="/registration">
+            {" "}
+            <span style={{ textAnchor: "unset" }}>Registration</span>
+          </Link>
+        </p>
       </Col>
     </Row>
   );

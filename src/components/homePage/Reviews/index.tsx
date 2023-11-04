@@ -14,7 +14,7 @@ interface ReviewProps {
 
 const Review = () => {
   const { data } = useReviewsQuery(undefined);
-  console.log(data);
+  console.log("review", data);
 
   const reviews = [];
 
@@ -73,7 +73,7 @@ const Review = () => {
   return (
     <div
       style={{
-        marginTop: "100px",
+        marginTop: "200px",
         marginBottom: "90px",
         margin: "16px",
       }}

@@ -15,7 +15,8 @@ import { useState } from "react";
 import { registrationSchema } from "@/schemas/registration";
 import { useUserSignupMutation } from "@/redux/api/user.Api";
 import Image from "next/image";
-import registrationImage from "../../assets/Secure login.gif";
+import registrationImage from "../../assets/Sign up-bro.png";
+import Link from "next/link";
 
 type FormValues = {
   id: string;
@@ -23,13 +24,10 @@ type FormValues = {
 };
 
 const Registration = () => {
-  // const [imageUrl, setImageUrl] = useState<string | undefined>();
-
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
   const beforeUpload = (file: File) => {
-    // You can add validation logic here if needed.
     return true;
   };
 
@@ -53,8 +51,6 @@ const Registration = () => {
   // "profileImg":"limk"
   // }
 
-  console.log("imageUrl", imageUrl);
-
   const [userSignup] = useUserSignupMutation();
   const router = useRouter();
 
@@ -63,13 +59,10 @@ const Registration = () => {
     console.log({ ...registrationData });
     try {
       const res = await userSignup({ ...registrationData });
-      console.log("res: ", res);
-      if (res) {
-        // router.push("/profile");
+      if (!!res) {
+        router.push("/");
         message.success("User Sign up  successfully!");
       }
-
-      console.log({ imageUrl, ...data });
     } catch (err: any) {
       console.error(err.message);
     }
@@ -84,9 +77,11 @@ const Registration = () => {
   return (
     <div>
       <div
-        style={{
-          background: "#e6fffb",
-        }}
+        style={
+          {
+            // background: "#e6fffb",
+          }
+        }
       >
         <Row
           justify="center"
@@ -99,7 +94,7 @@ const Registration = () => {
             <Image
               src={registrationImage}
               width={500}
-              height={200}
+              height={500}
               alt="login image"
             />
           </Col>
@@ -112,9 +107,156 @@ const Registration = () => {
               Registration your account
             </h1>
             <span>Welcome to my tutoring management system.</span>
+
+            <Form
+              submitHandler={onSubmit}
+              resolver={yupResolver(registrationSchema)}
+            >
+              <Row
+                justify="center"
+                align="middle"
+                style={{
+                  minHeight: "40vh",
+                  gap: "10px",
+                  // background: "#d9d9d9",
+                }}
+              >
+                <Col sm={12} md={16} lg={24}>
+                  <div
+                    style={{
+                      margin: "15px 0px",
+                    }}
+                  >
+                    <FormInput
+                      name="name"
+                      type="text"
+                      size="large"
+                      label="User Name"
+                      required
+                    />
+                  </div>
+                </Col>
+
+                <Col sm={12} md={16} lg={24}>
+                  <div
+                    style={{
+                      margin: "15px 0px",
+                    }}
+                  >
+                    <FormInput
+                      name="email"
+                      type="text"
+                      size="large"
+                      label="User Email"
+                      required
+                    />
+                  </div>
+                </Col>
+
+                <Col sm={12} md={16} lg={24}>
+                  <div
+                    style={{
+                      margin: "15px 0px",
+                    }}
+                  >
+                    <FormInput
+                      name="password"
+                      type="password"
+                      size="large"
+                      label="User Password"
+                      required
+                    />
+                  </div>
+                </Col>
+
+                <Col sm={12} md={16} lg={24}>
+                  <div
+                    style={{
+                      margin: "15px 0px",
+                    }}
+                  >
+                    <FormInput
+                      name="contactNo"
+                      type="text"
+                      size="large"
+                      label="User Contact No"
+                      required
+                    />
+                  </div>
+                </Col>
+
+                <Col sm={12} md={16} lg={24}>
+                  <div
+                    style={{
+                      margin: "15px 0px",
+                    }}
+                  >
+                    <FormInput
+                      name="address"
+                      type="text"
+                      size="large"
+                      label="User Address"
+                      required
+                    />
+                  </div>
+                </Col>
+                <Col sm={12} md={16} lg={10}>
+                  <div className="flex" style={{ maxWidth: "20%" }}>
+                    <Upload
+                      name="avatar"
+                      listType="picture-circle"
+                      className="avatar-uploader"
+                      showUploadList={false}
+                      action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+                      beforeUpload={beforeUpload}
+                      customRequest={async ({ file }) => {
+                        //@ts-ignore
+                        await handleUpload(file);
+                      }}
+                    >
+                      {imageUrl ? (
+                        <img
+                          src={imageUrl}
+                          alt="avatar"
+                          style={{ width: "100%" }}
+                        />
+                      ) : (
+                        uploadButton
+                      )}
+                    </Upload>
+                  </div>
+                </Col>
+
+                <Col sm={12} md={16} lg={10}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Registration
+                  </Button>
+                </Col>
+                <p
+                  style={{
+                    marginTop: 20,
+                    display: "flex",
+                    justifyContent: "end",
+                  }}
+                >
+                  Already Registration?-{"  "}
+                  <Link href="/login">
+                    {"  "}
+                    <span style={{ textAnchor: "unset" }}> Login</span>
+                  </Link>
+                </p>
+              </Row>
+            </Form>
           </Col>
         </Row>
-        <Form
+        {/* <Form
           submitHandler={onSubmit}
           resolver={yupResolver(registrationSchema)}
         >
@@ -124,7 +266,7 @@ const Registration = () => {
             style={{
               minHeight: "40vh",
               gap: "10px",
-              background: "#d9d9d9",
+              // background: "#d9d9d9",
             }}
           >
             <Col sm={12} md={16} lg={10}>
@@ -220,7 +362,6 @@ const Registration = () => {
                     await handleUpload(file);
                   }}
                 >
-                  {/* <Button icon={<UploadOutlined />}>Upload Image</Button> */}
                   {imageUrl ? (
                     <img
                       src={imageUrl}
@@ -235,12 +376,16 @@ const Registration = () => {
             </Col>
 
             <Col sm={12} md={16} lg={32}>
-              <Button type="primary" htmlType="submit">
-                Sign up
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                Registration
               </Button>
             </Col>
           </Row>
-        </Form>
+        </Form> */}
       </div>
     </div>
   );

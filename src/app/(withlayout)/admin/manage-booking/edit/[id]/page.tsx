@@ -25,19 +25,14 @@ const EditDepartmentPage = ({ params }: IDProps) => {
   const { id } = params;
   const router = useRouter();
   const { data, isLoading } = useBookingQuery(id);
-  console.log("data", data);
   const [updateBooking] = useUpdateBookingMutation();
 
   //@ts-ignore
-
   const onSubmit = async (values: any) => {
     const data = { id, ...values };
-    console.log("values : ", data);
     message.loading("Creating...");
     try {
       const res = await updateBooking(data);
-      // console.log("values : ", data);
-      console.log("res ", res);
       if (!!res) {
         message.success("Booking updated successfully!");
         router.push("/admin/manage-booking");

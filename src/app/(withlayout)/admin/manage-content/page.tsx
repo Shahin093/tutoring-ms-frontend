@@ -37,7 +37,6 @@ const ManageContentPage = () => {
       >
         <Form
           submitHandler={onSubmit}
-          // resolver={yupResolver(registrationSchema)}
         >
           <h2
             style={{
@@ -47,8 +46,6 @@ const ManageContentPage = () => {
             Write Feedback{" "}
           </h2>
           <Row
-            // justify="center"
-            // align="middle"
             style={{
               minHeight: "40vh",
               gap: "10px",

@@ -1,7 +1,7 @@
 import { baseApi } from "./baseApi";
 import { tagTypes } from "../tag-types";
 
-const FEEDBACK_URL = "/feedbacks";
+const FEEDBACK_URL = "/contents";
 
 export const contentApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

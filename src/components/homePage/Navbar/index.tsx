@@ -8,8 +8,11 @@ import { useEffect, useState } from "react";
 import { authKey } from "@/constants/storageKey";
 import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
+import { CloseOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [visible, setVisible] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const showDrawer = () => {
@@ -29,14 +32,14 @@ const Navbar = () => {
   };
 
   const { role } = getUserInfo() as any;
-
+  console.log(role);
   return (
     <div style={{ height: "10vh", marginTop: "30px" }}>
       <div
         style={{
           height: "60px",
           color: "black",
-          paddingLeft: 12,
+          // paddingLeft: 12,
           paddingTop: 12,
         }}
         className="menuIcon"
@@ -55,18 +58,6 @@ const Navbar = () => {
       <span className="menuHeader">
         <AppMenu />
       </span>
-
-      {/* <Drawer
-        placement="left"
-        open={openMenu}
-        onClose={() => {
-          setOpenMenu(false);
-        }}
-        closable={false}
-        bodyStyle={{ backgroundColor: "dark" }}
-      >
-        <AppMenu isInLine={true} />
-      </Drawer>  */}
     </div>
   );
 };
@@ -80,14 +71,11 @@ function AppMenu({ isInLine = false }) {
     router.push("/login");
   };
 
-  // Create a variable to hold the button
   let loginButton;
 
   if (role) {
-    // If the user is logged in, show a "Logout" button
     loginButton = <span onClick={logOut}>Logout</span>;
   } else {
-    // If the user is not logged in, show a "Login" button
     loginButton = <Link href="/login">Login</Link>;
   }
   return (
@@ -113,17 +101,12 @@ function AppMenu({ isInLine = false }) {
         }}
         mode={isInLine ? "inline" : "horizontal"}
         items={[
-          // {
-          //   label: <Link href="/">Home</Link>, // Wrap the label with Link and specify the target route
-          //   key: "home",
-          // },
-
           {
-            label: loginButton, // Specify the target route for Login
+            label: loginButton,
             key: "login",
           },
           {
-            label: <Link href="/profile">Dashboard</Link>, // Specify the target route for Dashboard
+            label: <Link href="/profile">Dashboard</Link>,
             key: "profile",
           },
           {
@@ -133,7 +116,7 @@ function AppMenu({ isInLine = false }) {
                   Booking
                 </Button>
               </Link>
-            ), // Specify the target route for About Us
+            ),
             key: "booking",
           },
         ]}

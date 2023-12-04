@@ -26,7 +26,6 @@ const MyStory = () => {
         <Col sm={12} md={8} lg={12}>
           <h1
             style={{
-              margin: "15px 0px",
               fontSize: "25px",
             }}
           >
@@ -63,10 +62,10 @@ const MyStory = () => {
             }}
           >
             <Col
-              sm={12}
+              span={12}
               md={16}
               lg={8}
-              style={{ display: "flex", margin: "8px 0px" }}
+              style={{ display: "flex", margin: "0px 0px" }}
             >
               <img
                 src="https://tutor.foxthemes.me/wp-content/themes/tutorpro/assets/images/iconset/tutor/vector.png"
@@ -91,7 +90,7 @@ const MyStory = () => {
               </div>
             </Col>
             <Col
-              sm={12}
+              span={12}
               md={16}
               lg={8}
               style={{ display: "flex", margin: "8px 0px" }}
@@ -119,7 +118,7 @@ const MyStory = () => {
               </div>
             </Col>
             <Col
-              sm={12}
+              span={12}
               md={16}
               lg={8}
               style={{ display: "flex", margin: "8px 0px" }}

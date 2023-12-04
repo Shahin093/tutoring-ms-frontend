@@ -8,7 +8,6 @@ import Link from "next/link";
 const ProfilePage = () => {
   //@ts-ignore
   const { data, isLoading } = useMyProfileQuery(undefined || null);
-  console.log("profile data: ", (data && data) || "");
   return (
     <div>
       <h1 style={{ margin: "15px" }}>Welcome back to your profile</h1>

@@ -45,7 +45,7 @@ const MyBookingPage = () => {
   //@ts-ignore
   const { data, isLoading } = useMyProfileQuery(undefined);
   const [deleteBooking] = useDeleteBookingMutation();
-  console.log("profile data: ", (data && data) || "");
+  // console.log("profile data: ", (data && data) || "");
   const [open, setOpen] = useState<boolean>(false);
   const [serviceId, setServiceId] = useState<string>("");
   const userData: any = data?.user;
@@ -103,10 +103,10 @@ const MyBookingPage = () => {
   ];
 
   const deleteServiceHandler = async (id: string) => {
-    // console.log(id);
+    console.log({ id });
     try {
       const res = await deleteBooking(id);
-      if (res) {
+      if (!!res) {
         message.success("Service Successfully Deleted!");
         setOpen(false);
       }
@@ -145,12 +145,13 @@ const MyBookingPage = () => {
             data?.user.map((userData: any, index: number) => (
               <Col key={index} span={8}>
                 <Card style={{ margin: "13px" }}>
+                  {/* <h2>{userData?.id}</h2> */}
                   <div className="testimonials-container-profile">
                     <Button
                       type="primary"
                       onClick={() => {
                         setOpen(true);
-                        setServiceId(userData?.service?.id);
+                        setServiceId(userData?.id);
                       }}
                       danger
                       style={{ marginLeft: "3px" }}

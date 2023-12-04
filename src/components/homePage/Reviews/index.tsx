@@ -14,7 +14,6 @@ interface ReviewProps {
 
 const Review = () => {
   const { data } = useReviewsQuery(undefined);
-  console.log("review", data);
 
   const reviews = [];
 
@@ -30,33 +29,6 @@ const Review = () => {
       });
     }
   }
-
-  // const reviews = [
-  //   {
-  //     id: 1,
-  //     name: "John Doe",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //     starRating: 4.5,
-  //     imageUrl:
-  //       "https://academist.qodeinteractive.com/wp-content/uploads/2018/06/main-home-team-big-8.jpg",
-  //   },
-  //   {
-  //     id: 1,
-  //     name: "John Doe",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //     starRating: 4.5,
-  //     imageUrl:
-  //       "https://academist.qodeinteractive.com/wp-content/uploads/2018/06/main-home-team-big-8.jpg",
-  //   },
-  //   {
-  //     id: 1,
-  //     name: "John Doe",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //     starRating: 4.5,
-  //     imageUrl:
-  //       "https://academist.qodeinteractive.com/wp-content/uploads/2018/06/main-home-team-big-8.jpg",
-  //   },
-  // ];
   const settings = {
     centerMode: true,
     centerPadding: "60px",

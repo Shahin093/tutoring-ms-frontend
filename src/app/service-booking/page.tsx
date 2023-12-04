@@ -184,7 +184,7 @@ const ServiceBookingPage = () => {
               backgroundColor: "#fafafa",
             }}
           >
-            {services?.map((service: IService, index: number) => (
+            {services && services?.map((service: IService, index: number) => (
               <CardComponent key={index}>
                 <Link href={`detailsService/${service?.id}`}>
                   <Card

@@ -17,12 +17,11 @@ export const sidebarItems = (role: string) => {
       label: "Profile",
       key: "profile",
       icon: <ProfileOutlined />,
-      children: [
-        {
-          label: <Link href={`/myBooking`}>My Booking</Link>,
-          key: `/MyBooking`,
-        },
-      ],
+    },
+    {
+      label: <Link href={`/myBooking`}>My Booking</Link>,
+      icon: <TableOutlined />,
+      key: `/MyBooking`,
     },
     {
       label: <Link href={`/manage-feedback`}>Manage Feedback</Link>,

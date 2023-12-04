@@ -65,9 +65,9 @@ const SempleProduct = () => {
           </div>
         </Col>
       </Row>
-      <Row gutter={16}>
+      <Row gutter={24}>
         {ourProduct.map((product, index) => (
-          <Col key={index} span={8}>
+          <Col key={index} span={24} md={8} lg={8}>
             <Card cover={<img alt="product-image" src={product.image} />}>
               <Meta title={product.name} description={product?.content} />
 

@@ -14,7 +14,7 @@ const Testimonials = () => {
       <h1>Testimonials</h1>
       <Row gutter={16}>
         {testimonials.map((testimonial, index) => (
-          <Col key={index} span={8}>
+          <Col key={index}  span={24} md={8} lg={8}>
             <Card style={{ margin: "13px" }}>
               <div className="testimonials-container">
                 <h1>{testimonial.name}</h1>

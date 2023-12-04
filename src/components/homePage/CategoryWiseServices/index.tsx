@@ -5,7 +5,7 @@ import { Card, Col, Row } from "antd";
 const { Meta } = Card;
 const CategoryWiseServices = () => {
   const { data } = useServiceCategoryQuery(undefined);
-  const banglaCategory =
+  const banglaCategory: any =
     data &&
     data?.filter(
       (categoryData: any) => categoryData.serviceName === "Bangla"
@@ -18,7 +18,7 @@ const CategoryWiseServices = () => {
   const mathCategory =
     data &&
     data?.filter((categoryData: any) => categoryData.serviceName === "Math")[0];
-
+  console.log({ banglaCategory });
   return (
     <div>
       <Row
@@ -28,16 +28,8 @@ const CategoryWiseServices = () => {
           padding: "5px",
         }}
       >
-        <Col span={8}>
-          <Card
-            title="Bangla Specialize"
-            bordered={false}
-            style={
-              {
-                // backgroundColor: "#fff1f0",
-              }
-            }
-          >
+        <Col span={24} md={8} lg={8}>
+          <Card title="Bangla Specialize" bordered={false}>
             <Card
               hoverable
               cover={
@@ -47,6 +39,8 @@ const CategoryWiseServices = () => {
                     banglaCategory?.service_image ||
                     "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   }
+                  width={300}
+                  style={{ height: "400px" }}
                 />
               }
             >
@@ -62,7 +56,7 @@ const CategoryWiseServices = () => {
           </Card>
         </Col>
 
-        <Col span={8}>
+        <Col span={24} md={8} lg={8}>
           <Card title="English Specialize" bordered={false}>
             <Card
               hoverable
@@ -73,6 +67,8 @@ const CategoryWiseServices = () => {
                     englishCategory?.service_image ||
                     "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   }
+                  width={300}
+                  style={{ height: "400px" }}
                 />
               }
             >
@@ -88,7 +84,7 @@ const CategoryWiseServices = () => {
           </Card>
         </Col>
 
-        <Col span={8}>
+        <Col span={24} md={8} lg={8}>
           <Card title="Math Specialize" bordered={false}>
             <Card
               hoverable
@@ -99,6 +95,8 @@ const CategoryWiseServices = () => {
                     mathCategory?.service_image ||
                     "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   }
+                  width={300}
+                  style={{ height: "400px" }}
                 />
               }
             >

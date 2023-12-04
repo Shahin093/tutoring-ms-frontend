@@ -55,6 +55,7 @@ const LoginPage = () => {
         >
           LOGIN
         </h1>
+        <h2 className="m-20 text-yellow-500 bg-green-600">shahin sir</h2>
         <div>
           <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>

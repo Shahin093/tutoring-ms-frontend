@@ -11,7 +11,7 @@ import ProfessionalSection from "./professionals";
 const HomePage = () => {
   return (
     <div>
-      {/* <HeaderPage /> */}
+      <HeaderPage />
       <MyStory />
       <CategoryWiseServices />
       <SempleProduct />

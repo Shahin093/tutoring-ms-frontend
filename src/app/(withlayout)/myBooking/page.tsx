@@ -123,17 +123,14 @@ const MyBookingPage = () => {
       return "custom-row-class2";
     }
   };
+  console.log({ data });
   return (
     <div>
       <TMSTable
         loading={isLoading}
         columns={columns}
         dataSource={data?.user}
-        // pageSize={size}
-        // totalPages={meta?.total}
         showSizeChanger={true}
-        // onPaginationChange={onPaginationChange}
-        // onTableChange={onTableChange}
         showPagination={true}
         rowClassName={customRowClassName} // Provide the custom row class name function
       />
@@ -151,25 +148,26 @@ const MyBookingPage = () => {
                       type="primary"
                       onClick={() => {
                         setOpen(true);
-                        setServiceId(userData?.id);
+                        setServiceId(userData?.service?.id);
                       }}
                       danger
                       style={{ marginLeft: "3px" }}
                     >
                       <DeleteOutlined />
                     </Button>
-
-                    <Button
-                      type="primary"
-                      onClick={() => {
-                        // setOpen(true);
-                        setServiceId(userData?.id);
-                      }}
-                      danger
-                      style={{ marginLeft: "3px" }}
-                    >
-                      Review
-                    </Button>
+                    <Link href={`/create-review/${userData?.service?.id}`}>
+                      <Button
+                        type="primary"
+                        // onClick={() => {
+                        //   setOpen(true);
+                        //   setServiceId(userData?.id);
+                        // }}
+                        danger
+                        style={{ marginLeft: "3px" }}
+                      >
+                        Review
+                      </Button>
+                    </Link>
                   </div>
                 </Card>
               </Col>

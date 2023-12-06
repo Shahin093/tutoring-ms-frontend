@@ -11,14 +11,13 @@ const ManageFeedbackPage = () => {
   const router = useRouter();
   const [addFeedbackData] = useAddFeedbackDataMutation();
   const onSubmit = async (values: any) => {
-    console.log("values : ", values);
     message.loading("Creating...");
     try {
       const res = await addFeedbackData(values);
       console.log("res ", res);
       if (!!res) {
         message.success("FeedBack created successfully!");
-        router.push("/");
+        router.push("/blog");
       }
     } catch (err: any) {
       console.error(err.message);

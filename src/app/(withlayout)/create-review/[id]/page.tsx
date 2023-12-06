@@ -20,15 +20,19 @@ const ManageFeedbackPage = ({ params }: IDProps) => {
   const [addReviewData] = useAddReviewDataMutation();
 
   const onSubmit = async (values: any) => {
-    console.log("values : ", values);
-    const data = { userId: user?.userId, serviceid: id, ...values };
+    const data = {
+      userId: user?.userId,
+      serviceid: id,
+      reatingCount: parseInt(values?.reatingCount),
+      review_Comment: values.review_Comment,
+    };
     message.loading("Creating...");
     try {
       const res = await addReviewData(data);
       console.log("res ", res);
       if (!!res) {
         message.success("Review created successfully!");
-        router.push("/myBooking");
+        router.push("/");
       }
     } catch (err: any) {
       console.error(err.message);

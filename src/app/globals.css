@@ -124,6 +124,8 @@ header
 
 .header .logo a {
   color: #333;
+  font-size: "32px";
+  font-weight: bold;
 }
 
 .header .ant-anchor-wrapper {

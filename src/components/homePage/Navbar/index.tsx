@@ -35,6 +35,7 @@ const Navbar = () => {
   const onClose = () => {
     setVisible(false);
   };
+
   return (
     <div className="container-fluid">
       <div className="header">
@@ -65,6 +66,16 @@ const Navbar = () => {
             >
               <Link href="/service-booking" title=" Booking Now   " />
             </Button>
+
+            {role ? (
+              <Button style={{ color: "white" }} size="large" onClick={logOut}>
+                LogOut
+              </Button>
+            ) : (
+              <Button size="large">
+                <Link href="/login" title="Login" />
+              </Button>
+            )}
           </Anchor>
         </div>
         <div className="mobileVisible">
@@ -88,69 +99,5 @@ const Navbar = () => {
     </div>
   );
 };
-
-function AppMenu({ isInLine = false }) {
-  const { role } = getUserInfo() as any;
-  const router: any = useRouter();
-
-  const logOut = () => {
-    removeUserInfo(authKey);
-    router.push("/login");
-  };
-
-  let loginButton;
-
-  // if (role) {
-  //   loginButton = <span onClick={logOut}>Logout</span>;
-  // } else {
-  //   loginButton = <Link href="/login">Login</Link>;
-  // }
-  return (
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    // >
-    //   <div>
-    //     <Link href="/">
-    //       <h2 style={{ fontSize: "30px" }}>Tutor</h2>
-    //     </Link>
-    //   </div>
-    //   <Menu
-    //     style={{
-    //       color: "black",
-    //       fontSize: 24,
-    //       border: "none",
-    //       display: "flex",
-    //       justifyContent: "center",
-    //     }}
-    //     mode={isInLine ? "inline" : "horizontal"}
-    //     items={[
-    //       {
-    //         label: loginButton,
-    //         key: "login",
-    //       },
-    //       {
-    //         label: <Link href="/profile">Dashboard</Link>,
-    //         key: "profile",
-    //       },
-    //       {
-    //         label: (
-    //           <Link href="/service-booking">
-    //             <Button type="primary" shape="round" size="large">
-    //               Booking
-    //             </Button>
-    //           </Link>
-    //         ),
-    //         key: "booking",
-    //       },
-    //     ]}
-    //   ></Menu>
-    // </div>
-    <div></div>
-  );
-}
 
 export default Navbar;
